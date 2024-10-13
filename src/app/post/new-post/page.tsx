@@ -43,6 +43,7 @@ export default function NewPostPage() {
                 setError('글 작성에 실패했습니다.');
             }
         } catch (err) {
+            console.error(err);
             setError('서버 요청 중 에러가 발생했습니다.');
         } finally {
             setIsSubmitting(false); // 제출 상태 해제
