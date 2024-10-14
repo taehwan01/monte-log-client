@@ -44,9 +44,13 @@ export default function Home() {
 
     const handleLogout = async () => {
         try {
-            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-                withCredentials: true, // 쿠키 포함
-            });
+            await axios.post(
+                `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
+                {},
+                {
+                    withCredentials: true, // 쿠키 포함
+                }
+            );
             setIsLoggedIn(false); // 로그아웃 후 상태 업데이트
         } catch (error) {
             console.error('Error logging out:', error);
