@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './page.module.css';
 import Post from './post/post.interface';
-import Image from 'next/image';
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
