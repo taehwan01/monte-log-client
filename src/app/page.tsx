@@ -73,7 +73,9 @@ export default function Home() {
                 {posts.length > 0 ? (
                     posts.map((post, index) => (
                         <li key={index}>
-                            <h3>{post.title}</h3>
+                            <h3>
+                                {post.post_id} + {post.title}
+                            </h3>
                             <p>{post.content}</p>
                             <p>{post.created_at}</p>
                         </li>

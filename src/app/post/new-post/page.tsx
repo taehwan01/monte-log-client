@@ -3,6 +3,11 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Next.js 라우터 사용
 import axios from 'axios'; // Axios 사용
+import dynamic from 'next/dynamic';
+
+// 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
+const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
+const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
 export default function NewPostPage() {
     const [title, setTitle] = useState(''); // 제목 상태 관리
@@ -63,15 +68,6 @@ export default function NewPostPage() {
                     style={{ width: '100%', marginBottom: '10px' }}
                 />
                 <br />
-                <textarea
-                    name='content'
-                    rows={10}
-                    cols={50}
-                    placeholder='여기에 글을 작성하세요.'
-                    value={content}
-                    onChange={(e) => setContent(e.target.value)} // 내용 상태 업데이트
-                />
-                <br />
                 <input
                     type='text'
                     name='category'
@@ -80,6 +76,17 @@ export default function NewPostPage() {
                     onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
                     style={{ width: '100%', marginBottom: '10px' }}
                 />
+                <br />
+                <div style={{ display: 'flex', gap: '20px' }}>
+                    {/* Markdown 에디터 */}
+                    <div style={{ flex: 1 }}>
+                        <MDEditor value={content} onChange={(value) => setContent(value || '')} />
+                    </div>
+                    {/* Markdown 미리보기 */}
+                    <div style={{ flex: 1 }}>
+                        <Markdown source={content} />
+                    </div>
+                </div>
                 <br />
                 <button type='submit' disabled={isSubmitting}>
                     작성완료
