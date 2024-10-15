@@ -3,7 +3,8 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './page.module.css';
-import Post from './post/post';
+import Post from './post/post.interface';
+import Image from 'next/image';
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -101,8 +102,10 @@ export default function Home() {
                 {posts.length > 0 ? (
                     posts.map((post) => (
                         <li key={post.post_id} onClick={() => handlePostClick(post)}>
-                            <img src={post.thumbnail} alt='썸네일 이미지' />
+                            <img src={post.thumbnail} alt='썸네일 이미지' width={100} height={100} />
+                            {/* <Image src={post.thumbnail} alt='썸네일 이미지' width={200} height={200} /> */}
                             <h3>{post.title}</h3>
+                            <h5>{post.category.name}</h5>
                             <p>미리보기: {post.preview_content}</p>
                             <p>{new Date(post.created_at).toLocaleDateString()}</p>
                             <br />
