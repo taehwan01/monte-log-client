@@ -13,6 +13,8 @@ export default function NewPostPage() {
     const [title, setTitle] = useState(''); // 제목 상태 관리
     const [content, setContent] = useState(''); // 내용 상태 관리
     const [category, setCategory] = useState(''); // 카테고리 상태 관리
+    const [thumbnail, setThumbnail] = useState(''); // 썸네일 URL 상태 관리
+    const [previewContent, setPreviewContent] = useState(''); // 미리보기 내용 상태 관리
     const [isSubmitting, setIsSubmitting] = useState(false); // 제출 상태 관리
     const [error, setError] = useState(''); // 에러 메시지 상태 관리
     const router = useRouter(); // Next.js 라우터
@@ -20,9 +22,9 @@ export default function NewPostPage() {
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); // 폼 기본 동작(페이지 새로고침) 방지
 
-        // 제목, 내용, 카테고리가 비어 있는지 확인
-        if (!title.trim() || !content.trim() || !category.trim()) {
-            setError('제목, 내용, 카테고리를 모두 입력하세요.');
+        // 제목, 내용, 카테고리, 썸네일, 미리보기 내용이 비어 있는지 확인
+        if (!title.trim() || !content.trim() || !category.trim() || !thumbnail.trim() || !previewContent.trim()) {
+            setError('제목, 내용, 카테고리, 썸네일, 미리보기 내용을 모두 입력하세요.');
             return;
         }
 
@@ -32,7 +34,7 @@ export default function NewPostPage() {
         try {
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/posts`,
-                { title, content, category },
+                { title, content, category, thumbnail, preview_content: previewContent },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -75,6 +77,24 @@ export default function NewPostPage() {
                     value={category}
                     onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
                     style={{ width: '100%', marginBottom: '10px' }}
+                />
+                <br />
+                <input
+                    type='text'
+                    name='thumbnail'
+                    placeholder='썸네일 URL을 입력하세요.'
+                    value={thumbnail}
+                    onChange={(e) => setThumbnail(e.target.value)} // 썸네일 상태 업데이트
+                    style={{ width: '100%', marginBottom: '10px' }}
+                />
+                <br />
+                <textarea
+                    name='previewContent'
+                    placeholder='미리보기 내용을 입력하세요 (최대 500자).'
+                    value={previewContent}
+                    onChange={(e) => setPreviewContent(e.target.value)} // 미리보기 내용 상태 업데이트
+                    maxLength={500}
+                    style={{ width: '100%', marginBottom: '10px', height: '100px' }}
                 />
                 <br />
                 <div style={{ display: 'flex', gap: '20px' }}>

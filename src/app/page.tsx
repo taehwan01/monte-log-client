@@ -44,7 +44,7 @@ export default function Home() {
             .replace(/\s+/g, '-'); // 공백을 하이픈으로 변환
     };
 
-    // Next.js에서 게시물 클릭 시 id와 slug를 함께 URL로 이동
+    // 게시물 클릭
     const handlePostClick = (post: Post) => {
         const slug = createSlug(post.title); // 슬러그 생성
         window.location.href = `/post/${post.post_id}/${slug}`; // id와 슬러그를 URL에 포함
@@ -79,11 +79,13 @@ export default function Home() {
             <h2>글 목록</h2>
             <ul>
                 {posts.length > 0 ? (
-                    posts.map((post, index) => (
-                        <li key={index} onClick={() => handlePostClick(post)}>
+                    posts.map((post) => (
+                        <li key={post.post_id} onClick={() => handlePostClick(post)}>
+                            <img src={post.thumbnail} alt='이미지' />
                             <h3>{post.title}</h3>
-                            <p>{post.content}</p>
-                            <p>{post.created_at}</p>
+                            <p>미리보기 시작! / {post.preview_content} / 미리보기 끝!</p>
+                            <p>{new Date(post.created_at).toLocaleDateString()}</p>
+                            <br />
                         </li>
                     ))
                 ) : (
