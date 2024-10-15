@@ -1,0 +1,11 @@
+.markdown {
+    background-color: orange;
+    padding: 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.markdown hr {
+    margin: 100px;
+    border: 1px solid orange;
+}
