@@ -3,14 +3,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import styles from './page.module.css';
-
-// Post 타입 정의
-interface Post {
-    post_id: number;
-    title: string;
-    content: string;
-    created_at: string;
-}
+import Post from './post/post';
 
 export default function Home() {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -42,6 +35,21 @@ export default function Home() {
         checkLoginStatus(); // 로그인 상태 확인 함수 호출
     }, []);
 
+    // 슬러그 생성 함수 (한글 허용)
+    const createSlug = (title: string): string => {
+        return title
+            .toLowerCase()
+            .replace(/[^\p{L}\p{N}\s-]/gu, '') // \p{L}은 모든 문자, \p{N}은 숫자, 유니코드 플래그 추가
+            .trim()
+            .replace(/\s+/g, '-'); // 공백을 하이픈으로 변환
+    };
+
+    // Next.js에서 게시물 클릭 시 id와 slug를 함께 URL로 이동
+    const handlePostClick = (post: Post) => {
+        const slug = createSlug(post.title); // 슬러그 생성
+        window.location.href = `/post/${post.post_id}/${slug}`; // id와 슬러그를 URL에 포함
+    };
+
     const handleLogout = async () => {
         try {
             await axios.post(
@@ -72,10 +80,8 @@ export default function Home() {
             <ul>
                 {posts.length > 0 ? (
                     posts.map((post, index) => (
-                        <li key={index}>
-                            <h3>
-                                {post.post_id} + {post.title}
-                            </h3>
+                        <li key={index} onClick={() => handlePostClick(post)}>
+                            <h3>{post.title}</h3>
                             <p>{post.content}</p>
                             <p>{post.created_at}</p>
                         </li>
