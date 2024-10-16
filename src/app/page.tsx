@@ -7,25 +7,12 @@ import Post from './post/post.interface';
 import Image from 'next/image';
 
 export default function Home() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [posts, setPosts] = useState<Post[]>([]);
     const [page, setPage] = useState(1); // 현재 페이지
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
     const limit = 7; // 한 페이지당 보여줄 게시물 수
 
     useEffect(() => {
-        const checkLoginStatus = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/status`, {
-                    withCredentials: true, // 쿠키 포함
-                });
-                const { isLoggedIn } = response.data;
-                setIsLoggedIn(isLoggedIn);
-            } catch (error) {
-                console.error('Error fetching login status:', error);
-            }
-        };
-
         const getPosts = async () => {
             try {
                 const response = await axios.get(
@@ -39,7 +26,6 @@ export default function Home() {
         };
 
         getPosts(); // 글 목록 가져오는 함수 호출
-        checkLoginStatus(); // 로그인 상태 확인 함수 호출
     }, [page]);
 
     // 슬러그 생성 함수 (한글 허용)
