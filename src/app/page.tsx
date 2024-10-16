@@ -71,52 +71,26 @@ export default function Home() {
         }
     };
 
-    const handleLogout = async () => {
-        try {
-            await axios.post(
-                `${process.env.NEXT_PUBLIC_API_URL}/auth/logout`,
-                {},
-                {
-                    withCredentials: true, // 쿠키 포함
-                }
-            );
-            setIsLoggedIn(false); // 로그아웃 후 상태 업데이트
-        } catch (error) {
-            console.error('Error logging out:', error);
-        }
-    };
-
-    const handleLogin = () => {
-        window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
-    };
-
     return (
         <div className={styles.page}>
-            <header>
-                <p>m o n t e.</p>
-                <p>l o g s.</p>
-            </header>
-            <a href='/post/new-post' style={{ textDecoration: 'underline' }}>
-                글쓰기
-            </a>
             <br />
             <h2>글 목록</h2>
-            <ul>
+            <div>
                 {posts.length > 0 ? (
                     posts.map((post) => (
-                        <li key={post.post_id} onClick={() => handlePostClick(post)}>
+                        <div key={post.post_id} onClick={() => handlePostClick(post)}>
                             <Image src={post.thumbnail} alt='썸네일 이미지' width={100} height={100} />
                             <h3>{post.title}</h3>
                             <h5>{post.category.name}</h5>
                             <p>미리보기: {post.preview_content}</p>
                             <p>{new Date(post.created_at).toLocaleDateString()}</p>
                             <br />
-                        </li>
+                        </div>
                     ))
                 ) : (
                     <p>글이 없습니다.</p>
                 )}
-            </ul>
+            </div>
 
             <div className={styles.pagination}>
                 <button onClick={handlePreviousPage} disabled={page === 1}>
@@ -129,12 +103,6 @@ export default function Home() {
                     다음
                 </button>
             </div>
-            <br />
-            {isLoggedIn ? (
-                <button onClick={handleLogout}>로그아웃</button>
-            ) : (
-                <button onClick={handleLogin}>관리자</button>
-            )}
         </div>
     );
 }

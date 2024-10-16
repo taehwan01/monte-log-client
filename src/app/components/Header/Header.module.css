@@ -1,0 +1,41 @@
+#header {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+}
+
+#headerLogoContainer {
+    width: 100vw;
+    height: 70px;
+    display: flex;
+    align-items: center;
+}
+
+#headerLogo {
+    margin: 20px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    border: none;
+}
+#headerLogo:hover {
+    cursor: pointer;
+}
+
+#logoText {
+    font-size: 26px;
+    font-weight: 300;
+}
+
+#logoSquare {
+    width: 5px;
+    height: 5px;
+    margin: 0 0 5px 10px;
+    background-color: #000000;
+}

@@ -1,19 +1,19 @@
 :root {
-    --background: #ececec;
-    --foreground: #0a0a0a;
+    --background: #ffffff;
+    --foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
     :root {
         --background: #000000;
-        --foreground: #ececec;
+        --foreground: #ffffff;
     }
 }
 
 html,
 body {
     max-width: 100vw;
-    overflow-x: hidden;
+    min-height: 100vh;
 }
 
 body {
@@ -22,6 +22,8 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    display: grid;
+    place-items: center;
 }
 
 * {
@@ -44,4 +46,32 @@ a {
 
 ::selection {
     background: #c6c6c6;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+.body-contents {
+    margin-top: 71px;
+    flex: 1;
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 1024px) {
+    .body-contents {
+        width: 700px;
+    }
+}
+
+@media (max-width: 500px) {
+    .body-contents {
+        width: 90%;
+    }
 }
