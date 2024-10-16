@@ -92,7 +92,10 @@ export default function Home() {
 
     return (
         <div className={styles.page}>
-            <h1>몬테. 로그</h1>
+            <header>
+                <p>m o n t e.</p>
+                <p>l o g s.</p>
+            </header>
             <a href='/post/new-post' style={{ textDecoration: 'underline' }}>
                 글쓰기
             </a>
