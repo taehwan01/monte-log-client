@@ -45,6 +45,7 @@ export default function Footer() {
                 }
             );
             setIsLoggedIn(false); // 로그아웃 후 상태 업데이트
+            window.location.href = '/';
         } catch (error) {
             console.error('Error logging out:', error);
         }
