@@ -57,20 +57,65 @@ export default function Home() {
         }
     };
 
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}.${month}.${day}`;
+    };
+
     return (
         <div className={styles.page}>
-            <br />
-            <h2>글 목록</h2>
-            <div>
+            <h2 className={styles.pageTitle}>목록</h2>
+            <div id={styles.postList}>
                 {posts.length > 0 ? (
-                    posts.map((post) => (
-                        <div key={post.post_id} onClick={() => handlePostClick(post)}>
-                            <Image src={post.thumbnail} alt='썸네일 이미지' width={100} height={100} />
-                            <h3>{post.title}</h3>
-                            <h5>{post.category.name}</h5>
-                            <p>미리보기: {post.preview_content}</p>
-                            <p>{new Date(post.created_at).toLocaleDateString()}</p>
-                            <br />
+                    posts.map((post, index) => (
+                        <div key={index} onClick={() => handlePostClick(post)} className={styles.postItemContainer}>
+                            {/* {index % 2 === 0 ? <></> : <></>} */}
+                            <Image
+                                src={post.thumbnail}
+                                alt='썸네일 이미지'
+                                className={styles.postThumbnail}
+                                width={100}
+                                height={100}
+                            />
+                            <table className={styles.postItem}>
+                                <tr>
+                                    <td colSpan={3}>
+                                        <span className={styles.postItemTitle}>{post.title}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr className={styles.postItemMeta}>
+                                    <td>
+                                        <span>{formatDate(post.created_at)}</span>
+                                    </td>
+                                    <td style={{ padding: '0 10px' }}>
+                                        <span>&#183;</span>
+                                    </td>
+                                    <td>
+                                        <span>{post.category.name}</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <span className={styles.postItemContent}>{post.preview_content}</span>
+                                    </td>
+                                </tr>
+                            </table>
                         </div>
                     ))
                 ) : (
@@ -78,15 +123,16 @@ export default function Home() {
                 )}
             </div>
 
-            <div className={styles.pagination}>
-                <button onClick={handlePreviousPage} disabled={page === 1}>
-                    이전
-                </button>
+            <div>
+                <button onClick={handlePreviousPage}>{page === 1 ? '비활성화 이전' : '이전'}</button>
                 <span>
                     {page} / {totalPages}
                 </span>
-                <button onClick={handleNextPage} disabled={page === totalPages}>
-                    다음
+                <button
+                    onClick={handleNextPage}
+                    // disabled={page === totalPages}
+                >
+                    {page === totalPages ? '비활성화 다음' : '다음'}
                 </button>
             </div>
         </div>

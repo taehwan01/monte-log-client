@@ -60,18 +60,21 @@ a {
     width: 900px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding: 50px 0;
 }
 
 @media (max-width: 1024px) {
     .body-contents {
         width: 700px;
+        padding: 40px 0;
     }
 }
 
 @media (max-width: 500px) {
     .body-contents {
         width: 90%;
+        padding: 25px 0;
     }
 }

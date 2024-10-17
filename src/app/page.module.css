@@ -1,0 +1,78 @@
+.page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.pageTitle {
+}
+
+#postList {
+    margin: 50px 0;
+}
+
+@media (max-width: 1024px) {
+    #postList {
+        margin: 40px 0;
+    }
+}
+
+@media (max-width: 500px) {
+    #postList {
+        margin: 25px 0;
+    }
+}
+
+.postItemContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.postThumbnail {
+    width: 150px;
+    height: 150px;
+    margin-right: 32px;
+    object-fit: cover;
+    border: 1px solid #9f9f9f;
+    border-radius: 12px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+}
+
+.postItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+.postItem span,
+.postItemTitle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.postItemTitle {
+    font-size: 18px;
+    -webkit-line-clamp: 1;
+    line-clamp: 1;
+}
+.postItemContent {
+    font-size: 15px;
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+    line-height: 1.5;
+}
+
+.postItemMeta {
+    font-size: 12.8px;
+}
+
+.postItemMeta span:nth-child(2) {
+    margin: 0 50px;
+}
