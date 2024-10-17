@@ -4,12 +4,12 @@ const nextConfig = {
         remotePatterns: [
             {
                 protocol: 'https',
-                hostname: 'github-production-user-asset-6210df.s3.amazonaws.com',
+                hostname: 'velog.velcdn.com',
                 pathname: '/**',
             },
             {
                 protocol: 'https',
-                hostname: 'velog.velcdn.com',
+                hostname: 'media.giphy.com',
                 pathname: '/**',
             },
         ],
