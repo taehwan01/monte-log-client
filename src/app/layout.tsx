@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import Head from 'next/head';
 
 const gmarketSans = localFont({
     src: [
@@ -37,6 +38,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
+            <Head>
+                <title>m o n t e .l o g</title>
+                <meta name='description' content='monte의 개발 블로그입니다.' />
+                <link rel='icon' href='/favicon.ico' />
+            </Head>
             <body className={gmarketSans.className}>
                 <div className='container'>
                     <Header />

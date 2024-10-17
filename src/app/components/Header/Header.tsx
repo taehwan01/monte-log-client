@@ -22,6 +22,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 {/* <Image
                     id={styles.headerLogoGif}
@@ -29,6 +30,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 <Image
                     id={styles.headerLogoGif}
@@ -36,6 +38,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 <Image
                     id={styles.headerLogoGif}
@@ -43,6 +46,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 <Image
                     id={styles.headerLogoGif}
@@ -50,6 +54,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 <Image
                     id={styles.headerLogoGif}
@@ -57,6 +62,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 />
                 <Image
                     id={styles.headerLogoGif}
@@ -64,6 +70,7 @@ export default function Header() {
                     alt='logo'
                     width={50}
                     height={50}
+                    unoptimized
                 /> */}
             </div>
             <HorizontalRule />
