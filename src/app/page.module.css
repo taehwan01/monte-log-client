@@ -40,7 +40,6 @@
     object-fit: cover;
     border: 1px solid #9f9f9f;
     border-radius: 12px;
-    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
 
 .postItem {
