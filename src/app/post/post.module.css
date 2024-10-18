@@ -14,8 +14,22 @@
     width: 100%;
     font-size: 12.8px;
     margin-bottom: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
 }
 
+#likeButton {
+    border: none;
+    background-color: transparent;
+    margin-right: 5px;
+    transition: transform 0.2s;
+}
+#likeButton:hover {
+    transform: scale(1.1);
+}
+
+/* markdown 디자인 수정 */
 .postMarkdown hr {
     border: 0 !important;
     height: 1px !important;
@@ -37,4 +51,15 @@
 
 .postMarkdown a {
     color: #003da5 !important;
+}
+
+.postMarkdown pre div {
+    color: #9f9f9f !important;
+    border: 1px solid #9f9f9f !important;
+    background-color: #db2828 !important;
+    background-color: #ffffff !important;
+}
+.postMarkdown pre div:hover {
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
 }
