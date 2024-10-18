@@ -1,9 +1,8 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import Image from 'next/image';
 import styles from './failure.module.css';
-import dittoImage from '../../../public/ditto.jpg';
+import Loading from '@/app/components/Loading/Loading';
 
 export default function LoginFailure() {
     const [timer, setTimer] = useState(3);
@@ -11,18 +10,18 @@ export default function LoginFailure() {
     useEffect(() => {
         const interval = setInterval(() => {
             setTimer((prev) => prev - 1);
-        }, 1000);
+        }, 900);
 
         setTimeout(() => {
             window.location.href = '/';
-        }, 3000);
+        }, 2610);
 
         return () => clearInterval(interval);
     }, []);
 
     return (
         <div id={styles.loginFailureContainer}>
-            <Image src={dittoImage} alt='ditto' id={styles.ditto} />
+            <Loading />
             <div id={styles.loginFailureMessageContainer}>
                 <p>로그인이 거부되었습니다.</p>
                 <br />

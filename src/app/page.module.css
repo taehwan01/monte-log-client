@@ -3,8 +3,7 @@
     flex: 1;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+    justify-content: center;
 }
 
 #postList {
@@ -84,10 +83,12 @@
 
 .postItemMeta {
     font-size: 12.8px;
+    display: flex;
+    align-items: center;
 }
-
-.postItemMeta span:nth-child(2) {
-    margin: 0 50px;
+.postItemMeta span:nth-child(2),
+.postItemMeta span:nth-child(4) {
+    margin: 0 10px;
 }
 
 .postItemLineBreak {

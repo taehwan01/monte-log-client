@@ -9,4 +9,5 @@ export default interface Post {
     thumbnail: string; // 게시글 썸네일 URL
     created_at: string;
     category: Category; // 카테고리 추가
+    like_count: [{ count: number }]; // 좋아요 수
 }

@@ -9,8 +9,11 @@ import leftArrow from './public/arrow-left.svg';
 import leftArrowDisabled from './public/arrow-left-disabled.svg';
 import rightArrow from './public/arrow-right.svg';
 import rightArrowDisabled from './public/arrow-right-disabled.svg';
+import Loading from './components/Loading/Loading';
+import grayHeart from './public/gray-heart.svg';
 
 export default function Home() {
+    const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [page, setPage] = useState(1); // 현재 페이지
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
@@ -22,6 +25,7 @@ export default function Home() {
                 const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_API_URL}/posts?page=${page}&limit=${limit}`
                 );
+                console.log(response.data);
                 setPosts(response.data.posts); // 글 목록 상태 업데이트
                 setTotalPages(response.data.totalPages); // 총 페이지 수 설정
             } catch (error) {
@@ -30,6 +34,7 @@ export default function Home() {
         };
 
         getPosts(); // 글 목록 가져오는 함수 호출
+        setIsLoading(false);
     }, [page]);
 
     // 슬러그 생성 함수 (한글 허용)
@@ -70,6 +75,14 @@ export default function Home() {
         return `${year}.${month}.${day}`;
     };
 
+    if (isLoading) {
+        return (
+            <div className={styles.page}>
+                <Loading />
+            </div>
+        );
+    }
+
     return (
         <div className={styles.page}>
             <h2 className={styles.pageTitle}>목록</h2>
@@ -86,29 +99,35 @@ export default function Home() {
                                 height={100}
                             />
                             <table className={styles.postItem}>
-                                <tr>
-                                    <td colSpan={3}>
-                                        <span className={styles.postItemTitle}>{post.title}</span>
-                                    </td>
-                                </tr>
-                                <tr className={styles.postItemLineBreak}></tr>
-                                <tr className={styles.postItemMeta}>
-                                    <td>
-                                        <span>{formatDate(post.created_at)}</span>
-                                    </td>
-                                    <td style={{ padding: '0 10px' }}>
-                                        <span>&#183;</span>
-                                    </td>
-                                    <td>
-                                        <span>{post.category.name}</span>
-                                    </td>
-                                </tr>
-                                <tr className={styles.postItemLineBreak}></tr>
-                                <tr>
-                                    <td>
-                                        <span className={styles.postItemContent}>{post.preview_content}</span>
-                                    </td>
-                                </tr>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <span className={styles.postItemTitle}>{post.title}</span>
+                                        </td>
+                                    </tr>
+                                    <tr className={styles.postItemLineBreak}></tr>
+                                    <tr>
+                                        <td>
+                                            <div className={styles.postItemMeta}>
+                                                <span>{formatDate(post.created_at)}</span>
+                                                <span>&#183;</span>
+                                                <span>{post.category.name}</span>
+                                                <span>&#183;</span>
+                                                <Image src={grayHeart} alt='좋아요' width={13} height={13} />
+                                                <span>&nbsp;</span>
+                                                <span>{post.like_count[0].count}</span>
+                                            </div>
+                                        </td>
+                                        {/* <td style={{ padding: '0 10px' }}></td>
+                                        <td></td> */}
+                                    </tr>
+                                    <tr className={styles.postItemLineBreak}></tr>
+                                    <tr>
+                                        <td>
+                                            <span className={styles.postItemContent}>{post.preview_content}</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
                             </table>
                         </div>
                     ))

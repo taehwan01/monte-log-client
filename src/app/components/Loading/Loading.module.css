@@ -1,0 +1,40 @@
+#loadingContainer {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 30px;
+    position: relative;
+    top: 20px;
+}
+
+#firstDot,
+#secondDot,
+#thirdDot {
+    width: 10px;
+    height: 10px;
+    background-color: #9f9f9f;
+    border: 1px solid #000000;
+    border-radius: 50%;
+    animation: dot 1s infinite;
+}
+
+#secondDot {
+    margin: 0 8px;
+    animation-delay: 0.2s;
+}
+
+#thirdDot {
+    animation-delay: 0.4s;
+}
+
+@keyframes dot {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
