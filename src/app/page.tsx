@@ -5,6 +5,10 @@ import axios from 'axios';
 import styles from './page.module.css';
 import Post from './post/post.interface';
 import Image from 'next/image';
+import leftArrow from './public/arrow-left.svg';
+import leftArrowDisabled from './public/arrow-left-disabled.svg';
+import rightArrow from './public/arrow-right.svg';
+import rightArrowDisabled from './public/arrow-right-disabled.svg';
 
 export default function Home() {
     const [posts, setPosts] = useState<Post[]>([]);
@@ -113,16 +117,23 @@ export default function Home() {
                 )}
             </div>
 
-            <div>
-                <button onClick={handlePreviousPage}>{page === 1 ? '비활성화 이전' : '이전'}</button>
-                <span>
-                    {page} / {totalPages}
+            <div className={styles.pageButtonsContainer}>
+                <button onClick={handlePreviousPage} className={styles.pageButtons} disabled={page === 1}>
+                    {page === 1 ? (
+                        <Image src={leftArrowDisabled} alt='이전' width={20} height={20} />
+                    ) : (
+                        <Image src={leftArrow} alt='이전' width={20} height={20} />
+                    )}
+                </button>
+                <span className={styles.pageContainer}>
+                    {page}&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;{totalPages}
                 </span>
-                <button
-                    onClick={handleNextPage}
-                    // disabled={page === totalPages}
-                >
-                    {page === totalPages ? '비활성화 다음' : '다음'}
+                <button onClick={handleNextPage} className={styles.pageButtons} disabled={page === totalPages}>
+                    {page === totalPages ? (
+                        <Image src={rightArrowDisabled} alt='다음' width={20} height={20} />
+                    ) : (
+                        <Image src={rightArrow} alt='다음' width={20} height={20} />
+                    )}
                 </button>
             </div>
         </div>

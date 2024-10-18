@@ -14,14 +14,14 @@
 
 @media (max-width: 1024px) {
     #postList {
-        margin: 40px 0;
+        margin: 40px 0 10px;
     }
 }
 
 @media (max-width: 500px) {
     #postList {
         width: 100%;
-        margin: 25px 0;
+        margin: 25px 0 0;
     }
 }
 
@@ -97,4 +97,19 @@
     .postItemLineBreak {
         height: 0;
     }
+}
+
+.pageButtonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageContainer {
+    margin: 0 15px;
+}
+.pageButtons {
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
 }
