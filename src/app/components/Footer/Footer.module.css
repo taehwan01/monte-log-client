@@ -34,15 +34,20 @@
 #footerPencil {
     rotate: 230deg;
     margin-left: 10px;
+    border: none;
     border-radius: 50%;
+    background-color: transparent;
 }
 #footerPencil:hover {
     cursor: pointer;
 }
 
 #footerLogout {
+    width: 30px;
+    height: 30px;
     border: 1px solid #db4455;
-    border-radius: 4px;
+    border-radius: 50%;
+    background-color: transparent;
     margin-left: 10px;
 }
 #footerLogout:hover {

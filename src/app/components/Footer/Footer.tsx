@@ -57,9 +57,13 @@ export default function Footer() {
             <div id={styles.footerInner}>
                 <div id={styles.footerMessage}>
                     <span>monte의 개발 블로그</span>
-                    <Image src={pencil} alt='pencil' id={styles.footerPencil} onClick={handleClickNewPost} />
+                    <button onClick={handleClickNewPost} id={styles.footerPencil}>
+                        <Image src={pencil} alt='pencil' />
+                    </button>
                     {isLoggedIn && (
-                        <Image src={logout} alt='logout' id={styles.footerLogout} onClick={handleClickLogout} />
+                        <button onClick={handleClickLogout} id={styles.footerLogout}>
+                            <Image src={logout} alt='logout' width={25} height={25} />
+                        </button>
                     )}
                 </div>
                 <br />
