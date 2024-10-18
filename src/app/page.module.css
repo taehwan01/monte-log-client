@@ -41,6 +41,12 @@
     border: 1px solid #9f9f9f;
     border-radius: 12px;
 }
+@media (max-width: 500px) {
+    .postThumbnail {
+        width: 100px;
+        height: 100px;
+    }
+}
 
 .postItem {
     width: 100%;
@@ -63,9 +69,15 @@
 }
 .postItemContent {
     font-size: 15px;
-    -webkit-line-clamp: 3;
-    line-clamp: 3;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
     line-height: 1.5;
+}
+@media (max-width: 500px) {
+    .postItemContent {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
 }
 
 .postItemMeta {
@@ -74,4 +86,13 @@
 
 .postItemMeta span:nth-child(2) {
     margin: 0 50px;
+}
+
+.postItemLineBreak {
+    height: 5px;
+}
+@media (max-width: 500px) {
+    .postItemLineBreak {
+        height: 0;
+    }
 }

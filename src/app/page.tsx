@@ -87,12 +87,7 @@ export default function Home() {
                                         <span className={styles.postItemTitle}>{post.title}</span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                </tr>
+                                <tr className={styles.postItemLineBreak}></tr>
                                 <tr className={styles.postItemMeta}>
                                     <td>
                                         <span>{formatDate(post.created_at)}</span>
@@ -104,12 +99,7 @@ export default function Home() {
                                         <span>{post.category.name}</span>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                </tr>
+                                <tr className={styles.postItemLineBreak}></tr>
                                 <tr>
                                     <td>
                                         <span className={styles.postItemContent}>{post.preview_content}</span>
