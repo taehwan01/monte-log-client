@@ -55,6 +55,15 @@ export default function PostDetail() {
         fetchLikeCounts();
     }, [id]);
 
+    const formatDate = (dateString: string) => {
+        const date = new Date(dateString);
+        const year = date.getFullYear();
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+
+        return `${year}.${month}.${day}`;
+    };
+
     // 좋아요 버튼 클릭 핸들러
     const handleLikeClick = async () => {
         try {
@@ -81,18 +90,20 @@ export default function PostDetail() {
     }
 
     return (
-        <div>
-            <h1>{post.title}</h1>
-            <h5>{post.category.name}</h5>
-            {/* Markdown으로 content를 렌더링 */}
-            <div data-color-mode='light'>
-                <Markdown source={post.content} className={styles.markdown} />
-            </div>
-            <p>{new Date(post.created_at).toLocaleDateString()}</p>
-            <div>
-                <button onClick={handleLikeClick}>{hasLiked ? '좋아요 취소' : '좋아요'}</button>
+        <div id={styles.postDetailContainer}>
+            <span id={styles.postDetailTitle}>{post.title}</span>
+            <div id={styles.postDetailMeta}>
+                <span>{formatDate(post.created_at)}</span>
+                <span style={{ padding: '0 10px' }}>&#183;</span>
+                <span>{post.category.name}</span>
+                <span style={{ padding: '0 10px' }}>&#183;</span>
                 <span>{likeCounts}명이 좋아요를 눌렀습니다.</span>
+                <button onClick={handleLikeClick}>{hasLiked ? '좋아요 취소' : '좋아요'}</button>
             </div>
+            <div data-color-mode='light'>
+                <Markdown source={post.content} className={styles.postMarkdown} />
+            </div>
+            <div></div>
         </div>
     );
 }

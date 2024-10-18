@@ -1,7 +1,8 @@
 .horizontalRule {
     height: 1px;
     width: 900px;
-    background: radial-gradient(circle, rgba(198, 198, 198, 1) 95%, rgba(255, 255, 255, 1) 100%);
+    /* background: radial-gradient(circle, rgb(0, 0, 0) 95%, rgba(255, 255, 255, 1) 100%); */
+    background: #000000;
 }
 
 @media (max-width: 1024px) {

@@ -56,8 +56,15 @@ a {
 
 @media (max-width: 500px) {
     .body-contents {
-        width: 90%;
+        width: 380px;
         padding: 25px 0;
         margin-top: 51px;
+    }
+}
+
+@media (max-width: 380px) {
+    .body-contents {
+        width: 330px;
+        padding: 25px 10px;
     }
 }

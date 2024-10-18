@@ -1,11 +1,40 @@
-.markdown {
-    background-color: orange;
-    padding: 16px;
-    border-radius: 8px;
-    margin-bottom: 16px;
+#postDetailContainer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
-.markdown hr {
-    margin: 100px;
-    border: 1px solid orange;
+#postDetailTitle {
+    margin-bottom: 10px;
+    font-size: 2rem;
+    font-weight: 700;
+}
+
+#postDetailMeta {
+    width: 100%;
+    font-size: 12.8px;
+    margin-bottom: 30px;
+}
+
+.postMarkdown hr {
+    border: 0 !important;
+    height: 1px !important;
+    background-color: #cecece !important;
+}
+.postMarkdown h1 {
+    border-bottom: 1px solid #cecece !important;
+    /* margin-bottom: 0 !important; */
+}
+
+.postMarkdown pre,
+.postMarkdown code {
+    background-color: #cecece !important;
+}
+
+.postMarkdown blockquote {
+    border-left: 4px solid #cecece !important;
+}
+
+.postMarkdown a {
+    color: #003da5 !important;
 }
