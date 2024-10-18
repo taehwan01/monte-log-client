@@ -99,6 +99,11 @@ export default function Home() {
                                 height={100}
                             />
                             <table className={styles.postItem}>
+                                <thead style={{ display: 'none' }}>
+                                    <tr>
+                                        <th></th>
+                                    </tr>
+                                </thead>
                                 <tbody>
                                     <tr>
                                         <td>
@@ -113,7 +118,7 @@ export default function Home() {
                                                 <span>&#183;</span>
                                                 <span>{post.category.name}</span>
                                                 <span>&#183;</span>
-                                                <Image src={grayHeart} alt='좋아요' width={13} height={13} />
+                                                <Image src={grayHeart} alt='좋아요' width={15} height={13} />
                                                 <span>&nbsp;</span>
                                                 <span>{post.like_count[0].count}</span>
                                             </div>
