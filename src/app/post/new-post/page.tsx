@@ -90,10 +90,10 @@ export default function NewPostPage() {
                 <br />
                 <textarea
                     name='previewContent'
-                    placeholder='미리보기 내용을 입력하세요 (최대 500자).'
+                    placeholder='미리보기 내용을 입력하세요 (최대 200자).'
                     value={previewContent}
                     onChange={(e) => setPreviewContent(e.target.value)} // 미리보기 내용 상태 업데이트
-                    maxLength={500}
+                    maxLength={200}
                     style={{ width: '100%', marginBottom: '10px', height: '100px' }}
                 />
                 <br />
