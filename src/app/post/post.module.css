@@ -45,6 +45,10 @@
     background-color: #cecece !important;
 }
 
+.postMarkdown code {
+    border: 1px solid #9f9f9f !important;
+}
+
 .postMarkdown blockquote {
     border-left: 4px solid #cecece !important;
 }
