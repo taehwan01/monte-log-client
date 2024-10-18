@@ -52,6 +52,7 @@
     margin-right: 20px;
     border: 1px solid #000000;
     border-radius: 50%;
+    box-shadow: 2px 2px 1px #000000;
 }
 @media (max-width: 500px) {
     #headerLogoGif {
