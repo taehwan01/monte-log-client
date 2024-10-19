@@ -91,13 +91,15 @@ export default function Home() {
                     posts.map((post, index) => (
                         <div key={index} onClick={() => handlePostClick(post)} className={styles.postItemContainer}>
                             {/* {index % 2 === 0 ? <></> : <></>} */}
-                            <Image
-                                src={post.thumbnail}
-                                alt='썸네일 이미지'
-                                className={styles.postThumbnail}
-                                width={100}
-                                height={100}
-                            />
+                            <div className={styles.imageContainer}>
+                                <Image
+                                    src={post.thumbnail}
+                                    alt='썸네일 이미지'
+                                    className={styles.postThumbnail}
+                                    width={150}
+                                    height={150}
+                                />
+                            </div>
                             <table className={styles.postItem}>
                                 <thead style={{ display: 'none' }}>
                                     <tr>

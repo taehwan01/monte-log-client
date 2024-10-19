@@ -34,6 +34,12 @@
     cursor: pointer;
 }
 
+.imageContainer {
+    width: 150px;
+    height: 150px;
+    margin-right: 32px;
+    border-radius: 12px;
+}
 .postThumbnail {
     width: 150px;
     height: 150px;
