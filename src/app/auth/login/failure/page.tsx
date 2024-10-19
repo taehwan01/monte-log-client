@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import styles from './failure.module.css';
-import Loading from '@/app/components/Loading/Loading';
+import LoginFailureLoading from '../../../components/LoginFailureLoader/LoginFailureLoader';
 
 export default function LoginFailure() {
     const [timer, setTimer] = useState(3);
@@ -21,7 +21,7 @@ export default function LoginFailure() {
 
     return (
         <div id={styles.loginFailureContainer}>
-            <Loading />
+            <LoginFailureLoading />
             <div id={styles.loginFailureMessageContainer}>
                 <p>로그인이 거부되었습니다.</p>
                 <br />
