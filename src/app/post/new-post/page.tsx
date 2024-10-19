@@ -20,7 +20,6 @@ export default function NewPostPage() {
     const [thumbnail, setThumbnail] = useState(''); // 썸네일 URL 상태 관리
     const [previewContent, setPreviewContent] = useState(''); // 미리보기 내용 상태 관리
     const [isSubmitting, setIsSubmitting] = useState(false); // 제출 상태 관리
-    const [error, setError] = useState(''); // 에러 메시지 상태 관리
     const router = useRouter(); // Next.js 라우터
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +32,6 @@ export default function NewPostPage() {
         }
 
         setIsSubmitting(true); // 제출 상태로 변경
-        setError(''); // 에러 초기화
 
         try {
             const response = await axios.post(
@@ -51,11 +49,11 @@ export default function NewPostPage() {
                 alert('글 작성이 완료되었습니다.');
                 router.push('/'); // 작성 완료 후 홈페이지로 이동
             } else {
-                setError('글 작성에 실패했습니다.');
+                alert('글 작성에 실패했습니다.');
             }
         } catch (err) {
             console.error(err);
-            setError('서버 요청 중 에러가 발생했습니다.');
+            alert('서버 요청 중 에러가 발생했습니다.');
         } finally {
             setIsSubmitting(false); // 제출 상태 해제
         }
@@ -105,7 +103,7 @@ export default function NewPostPage() {
                         <MDEditor
                             id={styles.markdownInput}
                             value={content}
-                            onChange={(value) => setContent(value || '')}
+                            onChange={(value) => setContent(value ?? '')}
                             preview='edit'
                             commands={[]}
                         />
