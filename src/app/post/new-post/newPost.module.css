@@ -1,0 +1,193 @@
+#newPostContainer {
+    width: 100%;
+    height: 120vh;
+    display: flex;
+    justify-content: center;
+}
+
+#newPostForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#inputPostMeta {
+    width: 100%;
+    display: flex;
+    padding: 0 10px;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+#inputMainMeta {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
+}
+
+#inputTitle {
+    font-size: 2rem;
+    font-weight: 700;
+}
+#inputCategory {
+    font-size: 12.8px;
+}
+#inputThumbnail {
+    font-size: 12.8px;
+    color: #003da5;
+}
+#inputTitle,
+#inputCategory,
+#inputThumbnail {
+    border: none;
+    border-bottom: 1px solid transparent;
+}
+#inputTitle:hover,
+#inputCategory:hover,
+#inputThumbnail:hover {
+    border-bottom: 1px solid #9f9f9f;
+}
+#inputTitle:focus,
+#inputCategory:focus {
+    outline: none;
+    border-bottom: 1px solid #000000;
+}
+#inputThumbnail:focus {
+    outline: none;
+    border-bottom: 1px solid #003da5;
+}
+#inputTitle:focus::placeholder,
+#inputCategory:focus::placeholder,
+#inputThumbnail:focus::placeholder {
+    color: transparent;
+}
+
+#inputPreviewContent {
+    width: 50%;
+    resize: none;
+    color: #000000;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    padding: 5px;
+}
+#inputPreviewContent:hover {
+    border: 1px solid #9f9f9f;
+}
+#inputPreviewContent:focus {
+    outline: none;
+    border: 1px solid #000000;
+}
+#inputPreviewContent:focus::placeholder {
+    color: transparent;
+}
+
+.formInput {
+    width: 100%;
+    height: 50px;
+    padding: 5px 0;
+    border: 1px solid #000000;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#markdownContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 15px;
+}
+
+#inputMarkdownContainer,
+#markdownPreviewContainer {
+    border: 1px solid #9f9f9f;
+    border-radius: 3px;
+}
+
+#inputMarkdownContainer {
+    width: 50%;
+    height: 610px;
+    display: flex;
+    overflow-y: auto;
+}
+
+#markdownInput {
+    width: 100% !important;
+    height: 100% !important;
+    box-sizing: border-box;
+    background-color: #ffffff !important;
+}
+
+#submitButton {
+    width: 50px;
+    height: 50px;
+    border: 1px solid #9f9f9f;
+    border-radius: 3px;
+    background-color: #ffffff;
+    position: absolute;
+    bottom: 11px;
+    right: 11px;
+    display: grid;
+    place-items: center;
+    z-index: 10;
+}
+
+#noteImage {
+    position: absolute;
+    right: 2px;
+}
+#pencilImage {
+    position: absolute;
+    bottom: 14px;
+    left: 22px;
+    rotate: 230deg;
+}
+
+#markdownPreviewContainer {
+    width: 50%;
+    height: 610px;
+    overflow-y: auto;
+    padding: 5px 10px;
+}
+
+/* markdown 디자인 수정 */
+#markdownPreviewContainer hr {
+    border: 0 !important;
+    height: 1px !important;
+    background-color: #cecece !important;
+}
+#markdownPreviewContainer h1 {
+    border-bottom: 1px solid #cecece !important;
+}
+
+#markdownPreviewContainer pre,
+#markdownPreviewContainer code {
+    background-color: #cecece !important;
+}
+
+#markdownPreviewContainer code {
+    border: 1px solid #9f9f9f !important;
+}
+
+#markdownPreviewContainer blockquote {
+    border-left: 4px solid #cecece !important;
+}
+
+#markdownPreviewContainer a {
+    color: #003da5 !important;
+}
+
+#markdownPreviewContainer pre div {
+    color: #9f9f9f !important;
+    border: 1px solid #9f9f9f !important;
+    background-color: #ffffff !important;
+}
+#markdownPreviewContainer pre div:hover {
+    color: #000000 !important;
+    border: 1px solid #000000 !important;
+}

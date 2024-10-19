@@ -4,6 +4,10 @@ import { useState } from 'react';
 import { useRouter } from 'next/navigation'; // Next.js 라우터 사용
 import axios from 'axios'; // Axios 사용
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
+import styles from './newPost.module.css';
+import note from '../../public/spiral-notepad.svg';
+import pencil from '../../public/pencil.svg';
 
 // 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
@@ -24,7 +28,7 @@ export default function NewPostPage() {
 
         // 제목, 내용, 카테고리, 썸네일, 미리보기 내용이 비어 있는지 확인
         if (!title.trim() || !content.trim() || !category.trim() || !thumbnail.trim() || !previewContent.trim()) {
-            setError('제목, 내용, 카테고리, 썸네일, 미리보기 내용을 모두 입력하세요.');
+            alert('제목, 내용, 카테고리, 썸네일, 미리보기 내용을 모두 입력하세요.');
             return;
         }
 
@@ -58,61 +62,63 @@ export default function NewPostPage() {
     };
 
     return (
-        <div>
-            <h1>글쓰기</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    type='text'
-                    name='title'
-                    placeholder='제목을 입력하세요.'
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)} // 제목 상태 업데이트
-                    style={{ width: '100%', marginBottom: '10px' }}
-                />
-                <br />
-                <input
-                    type='text'
-                    name='category'
-                    placeholder='카테고리를 입력하세요.'
-                    value={category}
-                    onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
-                    style={{ width: '100%', marginBottom: '10px' }}
-                />
-                <br />
-                <input
-                    type='text'
-                    name='thumbnail'
-                    placeholder='썸네일 URL을 입력하세요.'
-                    value={thumbnail}
-                    onChange={(e) => setThumbnail(e.target.value)} // 썸네일 상태 업데이트
-                    style={{ width: '100%', marginBottom: '10px' }}
-                />
-                <br />
-                <textarea
-                    name='previewContent'
-                    placeholder='미리보기 내용을 입력하세요 (최대 200자).'
-                    value={previewContent}
-                    onChange={(e) => setPreviewContent(e.target.value)} // 미리보기 내용 상태 업데이트
-                    maxLength={200}
-                    style={{ width: '100%', marginBottom: '10px', height: '100px' }}
-                />
-                <br />
-                <div style={{ display: 'flex', gap: '20px' }}>
-                    {/* Markdown 에디터 */}
-                    <div style={{ flex: 1 }}>
-                        <MDEditor value={content} onChange={(value) => setContent(value || '')} />
+        <div id={styles.newPostContainer}>
+            <form onSubmit={handleSubmit} id={styles.newPostForm}>
+                <div id={styles.inputPostMeta}>
+                    <div id={styles.inputMainMeta}>
+                        <input
+                            id={styles.inputTitle}
+                            type='text'
+                            name='title'
+                            placeholder='T I T L E .'
+                            value={title}
+                            onChange={(e) => setTitle(e.target.value)} // 제목 상태 업데이트
+                        />
+                        <input
+                            id={styles.inputCategory}
+                            type='text'
+                            name='category'
+                            placeholder='C A T E G O R Y .'
+                            value={category}
+                            onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
+                        />
+                        <input
+                            id={styles.inputThumbnail}
+                            type='text'
+                            name='thumbnail'
+                            placeholder='T H U M B N A I L .'
+                            value={thumbnail}
+                            onChange={(e) => setThumbnail(e.target.value)} // 썸네일 상태 업데이트
+                        />
                     </div>
-                    {/* Markdown 미리보기 */}
-                    <div style={{ flex: 1 }}>
+                    <textarea
+                        id={styles.inputPreviewContent}
+                        name='previewContent'
+                        placeholder='미리보기 내용을 입력하세요 (최대 200자).'
+                        value={previewContent}
+                        onChange={(e) => setPreviewContent(e.target.value)} // 미리보기 내용 상태 업데이트
+                        maxLength={200}
+                    />
+                </div>
+                <div id={styles.markdownContainer}>
+                    <div data-color-mode='light' id={styles.inputMarkdownContainer}>
+                        <MDEditor
+                            id={styles.markdownInput}
+                            value={content}
+                            onChange={(value) => setContent(value || '')}
+                            preview='edit'
+                            commands={[]}
+                        />
+                    </div>
+                    <div data-color-mode='light' id={styles.markdownPreviewContainer}>
                         <Markdown source={content} />
                     </div>
+                    <button type='submit' disabled={isSubmitting} id={styles.submitButton}>
+                        <Image src={note} alt='send' width={42} height={42} id={styles.noteImage} />
+                        <Image src={pencil} alt='send' width={28} height={28} id={styles.pencilImage} />
+                    </button>
                 </div>
-                <br />
-                <button type='submit' disabled={isSubmitting}>
-                    작성완료
-                </button>
             </form>
-            {error && <p style={{ color: 'red' }}>{error}</p>} {/* 에러 메시지 표시 */}
         </div>
     );
 }
