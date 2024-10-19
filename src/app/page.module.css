@@ -40,10 +40,17 @@
     margin-right: 32px;
     border-radius: 12px;
 }
+@media (max-width: 500px) {
+    .imageContainer {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+}
+
 .postThumbnail {
     width: 150px;
     height: 150px;
-    margin-right: 32px;
     object-fit: cover;
     border: 1px solid #9f9f9f;
     border-radius: 12px;
@@ -52,7 +59,6 @@
     .postThumbnail {
         width: 100px;
         height: 100px;
-        margin-right: 20px;
     }
 }
 
