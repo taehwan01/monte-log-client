@@ -12,10 +12,17 @@
     font-weight: 700;
 }
 
+#postMeta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    /* background-color: #003da5; */
+}
+
 #postDetailMeta {
     width: 100%;
     font-size: 12.8px;
-    margin-bottom: 30px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -27,8 +34,24 @@
     margin-right: 5px;
     transition: transform 0.2s;
 }
-#likeButton:hover {
+
+#editButton {
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+}
+#editButton img {
+    rotate: -90deg;
+    width: 20px;
+    height: 20px;
+    transition: transform 0.2s;
+}
+#likeButton:hover,
+#editButton:hover {
     transform: scale(1.1);
+}
+#editButton:hover img {
+    transform: rotate(320deg);
 }
 
 /* markdown 디자인 수정 */

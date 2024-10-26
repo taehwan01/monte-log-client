@@ -32,14 +32,17 @@
 }
 
 #footerPencil {
-    rotate: 230deg;
     margin-left: 10px;
     border: none;
     border-radius: 50%;
     background-color: transparent;
 }
-#footerPencil:hover {
-    cursor: pointer;
+#footerPencil img {
+    rotate: 230deg;
+    transition: transform 0.2s;
+}
+#footerPencil:hover img {
+    transform: rotate(360deg);
 }
 
 #footerLogout {
@@ -49,9 +52,6 @@
     border-radius: 50%;
     background-color: transparent;
     margin-left: 10px;
-}
-#footerLogout:hover {
-    cursor: pointer;
 }
 
 #footerCopyright {
