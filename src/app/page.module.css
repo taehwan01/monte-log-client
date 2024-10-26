@@ -39,6 +39,7 @@
     height: 150px;
     margin-right: 32px;
     border-radius: 12px;
+    background-color: #ffc700;
 }
 @media (max-width: 500px) {
     .imageContainer {
