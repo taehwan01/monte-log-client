@@ -38,9 +38,23 @@
     width: 150px;
     height: 150px;
     margin-right: 32px;
-    border-radius: 12px;
+    border-radius: 13px;
+    box-sizing: content-box;
     background-color: #ffc700;
 }
+/* 썸네일의 배경색은 4개요소마다 로테이션을 돌린다 */
+/* .postItemContainer:nth-child(4n + 1) .imageContainer {
+    background-color: #ffc700;
+}
+.postItemContainer:nth-child(4n + 2) .imageContainer {
+    background-color: #d32f2f;
+}
+.postItemContainer:nth-child(4n + 3) .imageContainer {
+    background-color: #388e3c;
+}
+.postItemContainer:nth-child(4n + 4) .imageContainer {
+    background-color: #1976d2;
+} */
 @media (max-width: 500px) {
     .imageContainer {
         width: 100px;
@@ -53,8 +67,8 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    border: 1px solid #9f9f9f;
     border-radius: 12px;
+    border: 1px solid #9f9f9f;
 }
 @media (max-width: 500px) {
     .postThumbnail {
