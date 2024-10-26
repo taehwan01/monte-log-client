@@ -39,7 +39,6 @@
     height: 150px;
     margin-right: 32px;
     border-radius: 13px;
-    box-sizing: content-box;
     background-color: #ffc700;
 }
 /* 썸네일의 배경색은 4개요소마다 로테이션을 돌린다 */
