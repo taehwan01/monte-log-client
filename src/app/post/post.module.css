@@ -39,6 +39,16 @@
     transform: scale(1.1);
 }
 
+#comments {
+    margin-top: 30px;
+    padding: 10px 20%;
+}
+#comments span {
+    font-weight: 500;
+    position: relative;
+    bottom: -10px;
+}
+
 /* markdown 디자인 수정 */
 .postMarkdown hr {
     border: 0 !important;
