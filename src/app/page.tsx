@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useSearchParams } from 'next/navigation'; // useSearchParams 추가
+import { useRouter } from 'next/navigation';
 import styles from './page.module.css';
 import Post from './post/post.interface';
 import Image from 'next/image';
@@ -14,13 +14,18 @@ import Loading from './components/Loading/Loading';
 import grayHeart from './public/gray-heart.svg';
 
 export default function Home() {
+    const router = useRouter();
+    const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
     const limit = 7; // 한 페이지당 보여줄 게시물 수
-    const searchParams = useSearchParams(); // useSearchParams 추가
-    const page = searchParams.get('page'); // URL에서 페이지 번호를 가져옴
-    const currentPage = page ? parseInt(page, 10) : 1; // 페이지 번호가 없을 경우 1로 설정
+
+    useEffect(() => {
+        const params = new URLSearchParams(window.location.search);
+        const page = Number(params.get('page'));
+        setCurrentPage(page || 1);
+    }, []);
 
     useEffect(() => {
         const getPosts = async () => {
@@ -42,9 +47,8 @@ export default function Home() {
 
     // 페이지 변경 시 URL 업데이트
     const handlePageChange = (newPage: number) => {
-        const url = new URL(window.location.href);
-        url.searchParams.set('page', newPage.toString());
-        window.history.pushState({}, '', url); // URL 쿼리 매개변수 업데이트
+        router.push(`/?page=${newPage}`);
+        setCurrentPage(newPage);
     };
 
     // 슬러그 생성 함수 (한글 허용)

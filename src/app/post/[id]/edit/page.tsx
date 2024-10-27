@@ -36,7 +36,7 @@ export default function NewPostPage() {
         };
 
         getPostData();
-    }, []);
+    }, [id]);
 
     const createSlug = (title: string): string => {
         return title
