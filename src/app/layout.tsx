@@ -3,8 +3,8 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
-import Head from 'next/head';
 
+// 폰트 설정
 const gmarketSans = localFont({
     src: [
         {
@@ -26,9 +26,13 @@ const gmarketSans = localFont({
     variable: '--font-gmarket-sans',
 });
 
+// metadata API를 사용하여 메타 정보 설정
 export const metadata: Metadata = {
     title: 'm o n t e .l o g',
     description: 'monte의 개발 블로그입니다.',
+    icons: {
+        icon: '/favicon.ico', // 파비콘 설정
+    },
 };
 
 export default function RootLayout({
@@ -38,11 +42,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang='en'>
-            <Head>
-                <title>m o n t e .l o g</title>
-                <meta name='description' content='monte의 개발 블로그입니다.' />
-                <link rel='icon' href='/favicon.ico' />
-            </Head>
             <body className={gmarketSans.className}>
                 <div className='container'>
                     <Header />
