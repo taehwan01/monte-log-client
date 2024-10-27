@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useSearchParams } from 'next/navigation'; // useSearchParams 추가
 import styles from './page.module.css';
 import Post from './post/post.interface';
 import Image from 'next/image';
@@ -15,15 +16,17 @@ import grayHeart from './public/gray-heart.svg';
 export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
-    const [page, setPage] = useState(1); // 현재 페이지
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
     const limit = 7; // 한 페이지당 보여줄 게시물 수
+    const searchParams = useSearchParams(); // useSearchParams 추가
+    const page = searchParams.get('page'); // URL에서 페이지 번호를 가져옴
+    const currentPage = page ? parseInt(page, 10) : 1; // 페이지 번호가 없을 경우 1로 설정
 
     useEffect(() => {
         const getPosts = async () => {
             try {
                 const response = await axios.get(
-                    `${process.env.NEXT_PUBLIC_API_URL}/posts?page=${page}&limit=${limit}`
+                    `${process.env.NEXT_PUBLIC_API_URL}/posts?page=${currentPage}&limit=${limit}`
                 );
                 console.log(response.data);
                 setPosts(response.data.posts); // 글 목록 상태 업데이트
@@ -31,11 +34,18 @@ export default function Home() {
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
+            setIsLoading(false);
         };
 
-        getPosts(); // 글 목록 가져오는 함수 호출
-        setIsLoading(false);
-    }, [page]);
+        getPosts();
+    }, [currentPage]); // currentPage 변경될 때마다 호출
+
+    // 페이지 변경 시 URL 업데이트
+    const handlePageChange = (newPage: number) => {
+        const url = new URL(window.location.href);
+        url.searchParams.set('page', newPage.toString());
+        window.history.pushState({}, '', url); // URL 쿼리 매개변수 업데이트
+    };
 
     // 슬러그 생성 함수 (한글 허용)
     const createSlug = (title: string): string => {
@@ -54,15 +64,15 @@ export default function Home() {
 
     // 이전 페이지로 이동
     const handlePreviousPage = () => {
-        if (page > 1) {
-            setPage((prevPage) => prevPage - 1);
+        if (currentPage > 1) {
+            handlePageChange(currentPage - 1);
         }
     };
 
     // 다음 페이지로 이동
     const handleNextPage = () => {
-        if (page < totalPages) {
-            setPage((prevPage) => prevPage + 1);
+        if (currentPage < totalPages) {
+            handlePageChange(currentPage + 1);
         }
     };
 
@@ -90,12 +100,9 @@ export default function Home() {
                 {posts.length > 0 ? (
                     posts.map((post, index) => (
                         <div key={index} onClick={() => handlePostClick(post)} className={styles.postItemContainer}>
-                            {/* {index % 2 === 0 ? <></> : <></>} */}
                             <div
                                 className={styles.imageContainer}
                                 style={{ backgroundColor: post.post_id === 1 ? '#b0c4cf' : '' }}
-                                // [진색] YELLOW: #ffc700, RED: #d32f2f, GREEN: #388e3c, BLUE: #1976d2  ]
-                                // [파스텔] YELLOW: #fdf3b5, RED: #f7b9b4, GREEN: #d0f0c0, BLUE: #b0c4cf
                             >
                                 <Image
                                     src={post.thumbnail}
@@ -130,8 +137,6 @@ export default function Home() {
                                                 <span>{post.like_count[0].count}</span>
                                             </div>
                                         </td>
-                                        {/* <td style={{ padding: '0 10px' }}></td>
-                                        <td></td> */}
                                     </tr>
                                     <tr className={styles.postItemLineBreak}></tr>
                                     <tr>
@@ -149,18 +154,18 @@ export default function Home() {
             </div>
 
             <div className={styles.pageButtonsContainer}>
-                <button onClick={handlePreviousPage} className={styles.pageButtons} disabled={page === 1}>
-                    {page === 1 ? (
+                <button onClick={handlePreviousPage} className={styles.pageButtons} disabled={currentPage === 1}>
+                    {currentPage === 1 ? (
                         <Image src={leftArrowDisabled} alt='이전' width={20} height={20} />
                     ) : (
                         <Image src={leftArrow} alt='이전' width={20} height={20} />
                     )}
                 </button>
                 <span className={styles.pageContainer}>
-                    {page}&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;{totalPages}
+                    {currentPage}&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;{totalPages}
                 </span>
-                <button onClick={handleNextPage} className={styles.pageButtons} disabled={page === totalPages}>
-                    {page === totalPages ? (
+                <button onClick={handleNextPage} className={styles.pageButtons} disabled={currentPage === totalPages}>
+                    {currentPage === totalPages ? (
                         <Image src={rightArrowDisabled} alt='다음' width={20} height={20} />
                     ) : (
                         <Image src={rightArrow} alt='다음' width={20} height={20} />
