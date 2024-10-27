@@ -91,7 +91,12 @@ export default function Home() {
                     posts.map((post, index) => (
                         <div key={index} onClick={() => handlePostClick(post)} className={styles.postItemContainer}>
                             {/* {index % 2 === 0 ? <></> : <></>} */}
-                            <div className={styles.imageContainer}>
+                            <div
+                                className={styles.imageContainer}
+                                style={{ backgroundColor: post.post_id === 1 ? '#b0c4cf' : '' }}
+                                // [진색] YELLOW: #ffc700, RED: #d32f2f, GREEN: #388e3c, BLUE: #1976d2  ]
+                                // [파스텔] YELLOW: #fdf3b5, RED: #f7b9b4, GREEN: #d0f0c0, BLUE: #b0c4cf
+                            >
                                 <Image
                                     src={post.thumbnail}
                                     alt='썸네일 이미지'
