@@ -10,7 +10,6 @@ import grayHeart from '../../../public/gray-heart.svg';
 import redHeart from '../../../public/red-heart.svg';
 import Image from 'next/image';
 import Loading from '../../../components/Loading/Loading';
-import pencil from '../../../public/pencil.svg';
 
 // 동적 import로 MDEditor의 Markdown 컴포넌트를 클라이언트에서만 로드
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
@@ -21,7 +20,6 @@ export default function PostDetail() {
     const [likeCounts, setLikeCounts] = useState<number>(0); // 좋아요 수 상태
     const [hasLiked, setHasLiked] = useState<boolean>(false); // 좋아요 여부 상태
     const [thanks, setThanks] = useState<boolean>(false); // 감사 메시지 상태
-    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -57,24 +55,9 @@ export default function PostDetail() {
             }
         };
 
-        const checkLoginStatus = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/status`, {
-                    withCredentials: true, // 쿠키 포함
-                });
-                const { isLoggedIn } = response.data;
-                setIsLoggedIn(isLoggedIn);
-            } catch (error) {
-                console.error('Error fetching login status:', error);
-            }
-        };
-
-        checkLoginStatus();
-
         fetchPost();
         checkLikeStatus();
         fetchLikeCounts();
-        checkLikeStatus();
     }, [id]);
 
     const formatDate = (dateString: string) => {
@@ -112,15 +95,6 @@ export default function PostDetail() {
         }
     };
 
-    const handleClickUpdatePost = () => {
-        if (isLoggedIn) {
-            alert('게시물 수정 기능은 준비 중입니다.');
-        } else {
-            window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
-            return;
-        }
-    };
-
     if (!post) {
         return (
             <div id={styles.postDetailContainer}>
@@ -148,9 +122,6 @@ export default function PostDetail() {
                     <span>{likeCounts}명이 좋아요를 눌렀어요!</span>
                     {thanks && <span style={{ fontWeight: '500' }}>&nbsp;&nbsp;감사합니다 :)</span>}
                 </div>
-                <button onClick={handleClickUpdatePost} id={styles.editButton}>
-                    <Image src={pencil} alt='pencil' />
-                </button>
             </div>
             <div data-color-mode='light'>
                 <Markdown source={post.content} className={styles.postMarkdown} />

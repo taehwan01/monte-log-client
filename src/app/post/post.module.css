@@ -35,23 +35,8 @@
     transition: transform 0.2s;
 }
 
-#editButton {
-    border: none;
-    border-radius: 50%;
-    background-color: transparent;
-}
-#editButton img {
-    rotate: -90deg;
-    width: 20px;
-    height: 20px;
-    transition: transform 0.2s;
-}
-#likeButton:hover,
-#editButton:hover {
+#likeButton:hover {
     transform: scale(1.1);
-}
-#editButton:hover img {
-    transform: rotate(320deg);
 }
 
 /* markdown 디자인 수정 */

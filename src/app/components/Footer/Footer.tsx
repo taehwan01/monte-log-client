@@ -27,9 +27,15 @@ export default function Footer() {
         checkLoginStatus();
     }, []);
 
-    const handleClickNewPost = () => {
+    const handleClickPencil = () => {
         if (isLoggedIn) {
-            window.location.href = '/post/new-post';
+            const currentPath = window.location.pathname;
+            if (currentPath === '/') {
+                window.location.href = '/post/new-post';
+            } else if (currentPath.includes('/post/')) {
+                const postId = currentPath.split('/')[2];
+                window.location.href = `/post/${postId}/edit`;
+            }
         } else {
             window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
         }
@@ -57,7 +63,7 @@ export default function Footer() {
             <div id={styles.footerInner}>
                 <div id={styles.footerMessage}>
                     <span>monte의 개발 블로그</span>
-                    <button onClick={handleClickNewPost} id={styles.footerPencil}>
+                    <button onClick={handleClickPencil} id={styles.footerPencil}>
                         <Image src={pencil} alt='pencil' />
                     </button>
                     {isLoggedIn && (
