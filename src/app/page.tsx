@@ -33,7 +33,6 @@ export default function Home() {
                 const response = await axios.get(
                     `${process.env.NEXT_PUBLIC_API_URL}/posts?page=${currentPage}&limit=${limit}`
                 );
-                console.log(response.data);
                 setPosts(response.data.posts); // 글 목록 상태 업데이트
                 setTotalPages(response.data.totalPages); // 총 페이지 수 설정
             } catch (error) {

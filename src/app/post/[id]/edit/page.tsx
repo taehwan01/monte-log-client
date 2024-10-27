@@ -32,7 +32,6 @@ export default function NewPostPage() {
             setCategory(postData.category.name);
             setThumbnail(postData.thumbnail);
             setPreviewContent(postData.preview_content);
-            console.log(postData);
         };
 
         getPostData();
