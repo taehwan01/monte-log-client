@@ -10,7 +10,7 @@ import grayHeart from '../../../public/gray-heart.svg';
 import redHeart from '../../../public/red-heart.svg';
 import Image from 'next/image';
 import Loading from '../../../components/Loading/Loading';
-import Comments from '../../../components/comments/Comments';
+import Comments from '../../../components/Comments/Comments';
 
 // 동적 import로 MDEditor의 Markdown 컴포넌트를 클라이언트에서만 로드
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
