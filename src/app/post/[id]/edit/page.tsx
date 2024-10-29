@@ -9,12 +9,14 @@ import styles from './newPost.module.css';
 import note from '../../../public/spiral-notepad.svg';
 import pencil from '../../../public/pencil.svg';
 import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import { useAuth } from '@/app/context/AuthContext';
 
 // 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
 export default function NewPostPage() {
+    const { isLoggedIn } = useAuth();
     const { id } = useParams(); // URL에서 id 추출
     const [title, setTitle] = useState(''); // 제목 상태 관리
     const [content, setContent] = useState(''); // 내용 상태 관리
@@ -24,6 +26,12 @@ export default function NewPostPage() {
     const [isPublic, setIsPublic] = useState(true); // 공개 여부 상태 관리
     const [isSubmitting, setIsSubmitting] = useState(false); // 제출 상태 관리
     const router = useRouter(); // Next.js 라우터
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+        }
+    }, [isLoggedIn]);
 
     useEffect(() => {
         const getPostData = async () => {

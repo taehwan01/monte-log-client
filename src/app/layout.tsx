@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import { AuthProvider } from './context/AuthContext';
 
 // 폰트 설정
 const gmarketSans = localFont({
@@ -43,11 +44,13 @@ export default function RootLayout({
     return (
         <html lang='en'>
             <body className={gmarketSans.className}>
-                <div className='container'>
-                    <Header />
-                    <div className='body-contents'>{children}</div>
-                    <Footer />
-                </div>
+                <AuthProvider>
+                    <div className='container'>
+                        <Header />
+                        <div className='body-contents'>{children}</div>
+                        <Footer />
+                    </div>
+                </AuthProvider>
             </body>
         </html>
     );

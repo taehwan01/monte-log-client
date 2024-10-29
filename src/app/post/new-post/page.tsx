@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'; // Next.js 라우터 사용
 import axios from 'axios'; // Axios 사용
 import dynamic from 'next/dynamic';
@@ -9,12 +9,14 @@ import styles from './newPost.module.css';
 import note from '../../public/spiral-notepad.svg';
 import pencil from '../../public/pencil.svg';
 import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
+import { useAuth } from '@/app/context/AuthContext';
 
 // 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
 export default function NewPostPage() {
+    const { isLoggedIn } = useAuth();
     const [title, setTitle] = useState(''); // 제목 상태 관리
     const [content, setContent] = useState(''); // 내용 상태 관리
     const [category, setCategory] = useState(''); // 카테고리 상태 관리
@@ -23,6 +25,12 @@ export default function NewPostPage() {
     const [isPublic, setIsPublic] = useState(true); // 공개 여부 상태 관리
     const [isSubmitting, setIsSubmitting] = useState(false); // 제출 상태 관리
     const router = useRouter(); // Next.js 라우터
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
+        }
+    }, [isLoggedIn]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); // 폼 기본 동작(페이지 새로고침) 방지

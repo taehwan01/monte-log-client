@@ -7,25 +7,10 @@ import styles from './Footer.module.css';
 import HorizontalRule from '../HorizontalRule/HorizontalRule';
 import pencil from '../../public/pencil.svg';
 import logout from '../../public/logout.svg';
+import { useAuth } from '@/app/context/AuthContext';
 
 export default function Footer() {
-    const [isLoggedIn, setIsLoggedIn] = useState(false);
-
-    useEffect(() => {
-        const checkLoginStatus = async () => {
-            try {
-                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/status`, {
-                    withCredentials: true, // 쿠키 포함
-                });
-                const { isLoggedIn } = response.data;
-                setIsLoggedIn(isLoggedIn);
-            } catch (error) {
-                console.error('Error fetching login status:', error);
-            }
-        };
-
-        checkLoginStatus();
-    }, []);
+    const { isLoggedIn } = useAuth();
 
     const handleClickPencil = () => {
         if (isLoggedIn) {
@@ -50,7 +35,6 @@ export default function Footer() {
                     withCredentials: true, // 쿠키 포함
                 }
             );
-            setIsLoggedIn(false); // 로그아웃 후 상태 업데이트
             window.location.href = '/';
         } catch (error) {
             console.error('Error logging out:', error);
