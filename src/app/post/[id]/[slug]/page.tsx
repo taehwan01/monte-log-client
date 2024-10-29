@@ -145,7 +145,7 @@ export default function PostDetail() {
                 <Markdown source={post.content} className={styles.postMarkdown} />
             </div>
 
-            <div style={{ height: '100px' }} />
+            <div style={{ height: '40px' }} />
             <HorizontalRule />
 
             <div id={styles.comments}>
