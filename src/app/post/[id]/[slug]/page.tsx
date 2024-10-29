@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { notFound, useParams, useRouter } from 'next/navigation'; // useParams로 id와 slug 가져오기
+import { useParams, useRouter } from 'next/navigation'; // useParams로 id와 slug 가져오기
 import axios from 'axios';
 import dynamic from 'next/dynamic'; // 동적 import를 위한 모듈
 import styles from '../../post.module.css';
@@ -31,7 +31,7 @@ export default function PostDetail() {
                 try {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`);
                     setPost(response.data); // API 호출하여 id로 데이터 가져오기
-                } catch (error) {
+                } catch {
                     router.push(`/error?errorMessage=${encodeURIComponent('존재하지 않거나 비공개 글입니다.')}`);
                 } finally {
                     setIsLoading(false);
@@ -44,7 +44,7 @@ export default function PostDetail() {
                 try {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}/like-status`);
                     setHasLiked(response.data.hasLiked); // 좋아요 여부 설정
-                } catch (error) {
+                } catch {
                     router.push('/error');
                 } finally {
                     setIsLoading(false);
@@ -57,7 +57,7 @@ export default function PostDetail() {
                 try {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}/like-count`);
                     setLikeCounts(response.data.likeCounts); // API 호출하여 좋아요 수 가져오기
-                } catch (error) {
+                } catch {
                     router.push('/error');
                 } finally {
                     setIsLoading(false);
