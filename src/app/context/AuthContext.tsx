@@ -7,12 +7,14 @@ import axios from 'axios';
 interface AuthContextType {
     isLoggedIn: boolean;
     checkLoginStatus: () => Promise<void>;
+    loading: boolean;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [loading, setLoading] = useState(true);
 
     const checkLoginStatus = async () => {
         try {
@@ -23,6 +25,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         } catch (error) {
             console.error('Error fetching login status:', error);
             setIsLoggedIn(false);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -30,7 +34,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         checkLoginStatus();
     }, []);
 
-    return <AuthContext.Provider value={{ isLoggedIn, checkLoginStatus }}>{children}</AuthContext.Provider>;
+    return (
+        <AuthContext.Provider value={{ isLoggedIn, checkLoginStatus, loading }}>
+            {!loading && children}
+        </AuthContext.Provider>
+    );
 };
 
 export const useAuth = () => {

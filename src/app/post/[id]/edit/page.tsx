@@ -15,8 +15,8 @@ import { useAuth } from '@/app/context/AuthContext';
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
-export default function NewPostPage() {
-    const { isLoggedIn } = useAuth();
+export default function EditPostPage() {
+    const { isLoggedIn, loading } = useAuth();
     const { id } = useParams(); // URL에서 id 추출
     const [title, setTitle] = useState(''); // 제목 상태 관리
     const [content, setContent] = useState(''); // 내용 상태 관리
@@ -28,10 +28,10 @@ export default function NewPostPage() {
     const router = useRouter(); // Next.js 라우터
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!loading && !isLoggedIn) {
             window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, loading]);
 
     useEffect(() => {
         const getPostData = async () => {

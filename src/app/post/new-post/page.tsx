@@ -16,7 +16,7 @@ const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
 export default function NewPostPage() {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, loading } = useAuth();
     const [title, setTitle] = useState(''); // 제목 상태 관리
     const [content, setContent] = useState(''); // 내용 상태 관리
     const [category, setCategory] = useState(''); // 카테고리 상태 관리
@@ -27,10 +27,10 @@ export default function NewPostPage() {
     const router = useRouter(); // Next.js 라우터
 
     useEffect(() => {
-        if (!isLoggedIn) {
+        if (!loading && !isLoggedIn) {
             window.location.href = `${process.env.NEXT_PUBLIC_API_URL}/auth/google`;
         }
-    }, [isLoggedIn]);
+    }, [isLoggedIn, loading]);
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault(); // 폼 기본 동작(페이지 새로고침) 방지
