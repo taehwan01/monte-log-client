@@ -41,9 +41,6 @@
     rotate: 230deg;
     transition: transform 0.2s;
 }
-#footerPencil:hover img {
-    transform: rotate(360deg);
-}
 
 #footerLogout {
     width: 30px;

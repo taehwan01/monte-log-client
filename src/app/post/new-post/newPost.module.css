@@ -1,6 +1,5 @@
 #newPostContainer {
     width: 100%;
-    height: 120vh;
     display: flex;
     justify-content: center;
 }
@@ -27,12 +26,19 @@
     gap: 13px;
 }
 
+#toggleSwitchContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
 #inputTitle {
     font-size: 2rem;
     font-weight: 700;
 }
 #inputCategory {
     font-size: 12.8px;
+    width: calc(100% - 70px);
 }
 #inputThumbnail {
     font-size: 12.8px;
@@ -98,7 +104,6 @@
 #markdownContainer {
     position: relative;
     width: 100%;
-    height: 100%;
     display: flex;
     gap: 15px;
 }
@@ -107,11 +112,11 @@
 #markdownPreviewContainer {
     border: 1px solid #9f9f9f;
     border-radius: 3px;
+    height: 100vh;
 }
 
 #inputMarkdownContainer {
     width: 50%;
-    height: 610px;
     display: flex;
     overflow-y: auto;
 }
@@ -150,7 +155,6 @@
 
 #markdownPreviewContainer {
     width: 50%;
-    height: 610px;
     overflow-y: auto;
     padding: 5px 10px;
 }

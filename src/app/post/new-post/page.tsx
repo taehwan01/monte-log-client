@@ -8,6 +8,7 @@ import Image from 'next/image';
 import styles from './newPost.module.css';
 import note from '../../public/spiral-notepad.svg';
 import pencil from '../../public/pencil.svg';
+import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
 
 // 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
@@ -19,6 +20,7 @@ export default function NewPostPage() {
     const [category, setCategory] = useState(''); // 카테고리 상태 관리
     const [thumbnail, setThumbnail] = useState(''); // 썸네일 URL 상태 관리
     const [previewContent, setPreviewContent] = useState(''); // 미리보기 내용 상태 관리
+    const [isPublic, setIsPublic] = useState(true); // 공개 여부 상태 관리
     const [isSubmitting, setIsSubmitting] = useState(false); // 제출 상태 관리
     const router = useRouter(); // Next.js 라우터
 
@@ -36,7 +38,7 @@ export default function NewPostPage() {
         try {
             const response = await axios.post(
                 `${process.env.NEXT_PUBLIC_API_URL}/posts`,
-                { title, content, category, thumbnail, preview_content: previewContent },
+                { title, content, category, thumbnail, preview_content: previewContent, visibility: isPublic },
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -59,6 +61,10 @@ export default function NewPostPage() {
         }
     };
 
+    const toggleVisibility = () => {
+        setIsPublic((prev) => !prev);
+    };
+
     return (
         <div id={styles.newPostContainer}>
             <form onSubmit={handleSubmit} id={styles.newPostForm}>
@@ -72,14 +78,17 @@ export default function NewPostPage() {
                             value={title}
                             onChange={(e) => setTitle(e.target.value)} // 제목 상태 업데이트
                         />
-                        <input
-                            id={styles.inputCategory}
-                            type='text'
-                            name='category'
-                            placeholder='C A T E G O R Y .'
-                            value={category}
-                            onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
-                        />
+                        <div id={styles.toggleSwitchContainer}>
+                            <input
+                                id={styles.inputCategory}
+                                type='text'
+                                name='category'
+                                placeholder='C A T E G O R Y .'
+                                value={category}
+                                onChange={(e) => setCategory(e.target.value)} // 카테고리 상태 업데이트
+                            />
+                            <ToggleSwitch isDefault={isPublic} onToggle={toggleVisibility} />
+                        </div>
                         <input
                             id={styles.inputThumbnail}
                             type='text'
