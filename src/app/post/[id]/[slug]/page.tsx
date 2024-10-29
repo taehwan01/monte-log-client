@@ -130,7 +130,7 @@ export default function PostDetail() {
 
             <div id={styles.comments}>
                 <span>댓글</span>
-                <Comments repo='taehwan01/monte-log-comments' label='comment' issueTerm='pathname' />
+                <Comments repo='taehwan01/monte-log-server' label='comment' issueTerm='pathname' />
             </div>
         </div>
     );
