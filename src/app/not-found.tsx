@@ -1,10 +1,10 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import styles from './failure.module.css';
-import LoginFailureLoading from '../../../components/LoginFailureLoader/LoginFailureLoader';
+import styles from './auth/login/failure/failure.module.css';
+import LoginFailureLoading from './components/LoginFailureLoader/LoginFailureLoader';
 
-export default function LoginFailure() {
+export default function NotFound() {
     const [timer, setTimer] = useState(3);
 
     useEffect(() => {
@@ -23,7 +23,7 @@ export default function LoginFailure() {
         <div id={styles.loginFailureContainer}>
             <LoginFailureLoading />
             <div id={styles.loginFailureMessageContainer}>
-                <p>로그인이 거부되었습니다.</p>
+                <p>무엇을 찾으시나요...?</p>
                 <br />
                 <p>{timer > 0 ? `${timer}초 후 ` : ''}메인 페이지로 이동합니다.</p>
             </div>

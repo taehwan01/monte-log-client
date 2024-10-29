@@ -1,0 +1,12 @@
+#loginFailureContainer {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#loginFailureMessageContainer {
+    margin-left: 1rem;
+    display: flex;
+    flex-direction: column;
+}

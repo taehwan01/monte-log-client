@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useParams } from 'next/navigation'; // useParams로 id와 slug 가져오기
+import { notFound, useParams, useRouter } from 'next/navigation'; // useParams로 id와 slug 가져오기
 import axios from 'axios';
 import dynamic from 'next/dynamic'; // 동적 import를 위한 모듈
 import styles from '../../post.module.css';
@@ -11,16 +11,19 @@ import redHeart from '../../../public/red-heart.svg';
 import Image from 'next/image';
 import Loading from '../../../components/Loading/Loading';
 import Comments from '../../../components/Comments/Comments';
+import HorizontalRule from '@/app/components/HorizontalRule/HorizontalRule';
 
 // 동적 import로 MDEditor의 Markdown 컴포넌트를 클라이언트에서만 로드
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
 export default function PostDetail() {
+    const router = useRouter();
     const { id } = useParams(); // URL에서 id와 slug 추출
     const [post, setPost] = useState<Post | null>(null); // Post 타입을 정의하지 않은 경우, any로 처리
     const [likeCounts, setLikeCounts] = useState<number>(0); // 좋아요 수 상태
     const [hasLiked, setHasLiked] = useState<boolean>(false); // 좋아요 여부 상태
     const [thanks, setThanks] = useState<boolean>(false); // 감사 메시지 상태
+    const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
         const fetchPost = async () => {
@@ -29,7 +32,9 @@ export default function PostDetail() {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}`);
                     setPost(response.data); // API 호출하여 id로 데이터 가져오기
                 } catch (error) {
-                    console.error('Failed to fetch post:', error);
+                    router.push(`/error?errorMessage=${encodeURIComponent('존재하지 않거나 비공개 글입니다.')}`);
+                } finally {
+                    setIsLoading(false);
                 }
             }
         };
@@ -40,7 +45,9 @@ export default function PostDetail() {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}/like-status`);
                     setHasLiked(response.data.hasLiked); // 좋아요 여부 설정
                 } catch (error) {
-                    console.error('Failed to check like status:', error);
+                    router.push('/error');
+                } finally {
+                    setIsLoading(false);
                 }
             }
         };
@@ -51,7 +58,9 @@ export default function PostDetail() {
                     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/posts/${id}/like-count`);
                     setLikeCounts(response.data.likeCounts); // API 호출하여 좋아요 수 가져오기
                 } catch (error) {
-                    console.error('Failed to fetch likes:', error);
+                    router.push('/error');
+                } finally {
+                    setIsLoading(false);
                 }
             }
         };
@@ -96,12 +105,16 @@ export default function PostDetail() {
         }
     };
 
-    if (!post) {
+    if (isLoading) {
         return (
             <div id={styles.postDetailContainer}>
                 <Loading />
             </div>
         );
+    }
+
+    if (!post) {
+        return null;
     }
 
     return (
@@ -127,6 +140,9 @@ export default function PostDetail() {
             <div data-color-mode='light'>
                 <Markdown source={post.content} className={styles.postMarkdown} />
             </div>
+
+            <div style={{ height: '100px' }} />
+            <HorizontalRule />
 
             <div id={styles.comments}>
                 <span>댓글</span>
