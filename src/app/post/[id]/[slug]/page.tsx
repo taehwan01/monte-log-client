@@ -137,6 +137,10 @@ export default function PostDetail() {
                     {thanks && <span style={{ fontWeight: '500' }}>&nbsp;&nbsp;감사합니다 :)</span>}
                 </div>
             </div>
+
+            <HorizontalRule />
+            <div style={{ height: '40px' }} />
+
             <div data-color-mode='light'>
                 <Markdown source={post.content} className={styles.postMarkdown} />
             </div>

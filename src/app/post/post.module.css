@@ -16,7 +16,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     /* background-color: #003da5; */
 }
 
@@ -40,7 +40,7 @@
 }
 
 #comments {
-    margin-top: 30px;
+    margin-top: 40px;
     padding: 10px 20%;
 }
 #comments span {
@@ -55,7 +55,8 @@
     height: 1px !important;
     background-color: #cecece !important;
 }
-.postMarkdown h1 {
+.postMarkdown h1,
+.postMarkdown h2 {
     border-bottom: 1px solid #cecece !important;
     /* margin-bottom: 0 !important; */
 }
