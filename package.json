@@ -11,9 +11,12 @@
   "dependencies": {
     "@uiw/react-md-editor": "^4.0.4",
     "axios": "^1.7.7",
+    "katex": "^0.16.11",
     "next": "14.2.15",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "rehype-katex": "^7.0.1",
+    "remark-math": "^6.0.0"
   },
   "devDependencies": {
     "@types/node": "^20",

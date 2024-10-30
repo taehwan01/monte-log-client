@@ -13,6 +13,10 @@ import Loading from '../../../components/Loading/Loading';
 import Comments from '../../../components/Comments/Comments';
 import HorizontalRule from '@/app/components/HorizontalRule/HorizontalRule';
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX styles
+
 // 동적 import로 MDEditor의 Markdown 컴포넌트를 클라이언트에서만 로드
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
 
@@ -68,7 +72,7 @@ export default function PostDetail() {
         fetchPost();
         checkLikeStatus();
         fetchLikeCounts();
-    }, [id]);
+    }, [id, router]);
 
     const formatDate = (dateString: string) => {
         const date = new Date(dateString);
@@ -142,7 +146,12 @@ export default function PostDetail() {
             <div style={{ height: '40px' }} />
 
             <div data-color-mode='light'>
-                <Markdown source={post.content} className={styles.postMarkdown} />
+                <Markdown
+                    source={post.content}
+                    className={styles.postMarkdown}
+                    remarkPlugins={[remarkMath]}
+                    rehypePlugins={[rehypeKatex]}
+                />
             </div>
 
             <div style={{ height: '40px' }} />

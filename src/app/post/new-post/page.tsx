@@ -11,6 +11,10 @@ import pencil from '../../public/pencil.svg';
 import ToggleSwitch from '@/app/components/ToggleSwitch/ToggleSwitch';
 import { useAuth } from '@/app/context/AuthContext';
 
+import remarkMath from 'remark-math';
+import rehypeKatex from 'rehype-katex';
+import 'katex/dist/katex.min.css'; // Import KaTeX styles
+
 // 동적 import로 MDEditor와 Markdown 컴포넌트를 클라이언트에서만 로드
 const MDEditor = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default), { ssr: false });
 const Markdown = dynamic(() => import('@uiw/react-md-editor').then((mod) => mod.default.Markdown), { ssr: false });
@@ -126,7 +130,7 @@ export default function NewPostPage() {
                         />
                     </div>
                     <div data-color-mode='light' id={styles.markdownPreviewContainer}>
-                        <Markdown source={content} />
+                        <Markdown source={content} remarkPlugins={[remarkMath]} rehypePlugins={[rehypeKatex]} />
                     </div>
                     <button type='submit' disabled={isSubmitting} id={styles.submitButton}>
                         <Image src={note} alt='send' width={42} height={42} id={styles.noteImage} />
