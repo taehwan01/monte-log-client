@@ -50,6 +50,10 @@
 }
 
 /* markdown 디자인 수정 */
+.postMarkdown {
+    color: black !important;
+}
+
 .postMarkdown hr {
     border: 0 !important;
     height: 1px !important;
@@ -87,4 +91,13 @@
 .postMarkdown pre div:hover {
     color: #000000 !important;
     border: 1px solid #000000 !important;
+}
+
+.postMarkdown table tr:nth-child(even) {
+    background-color: #cecece !important;
+}
+
+.postMarkdown th,
+.postMarkdown td {
+    border: 1px solid #9f9f9f !important;
 }

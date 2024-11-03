@@ -27,7 +27,8 @@ a {
 }
 
 ::selection {
-    background: #c6c6c6;
+    color: #ffffff;
+    background-color: #6c98b0;
 }
 
 .container {

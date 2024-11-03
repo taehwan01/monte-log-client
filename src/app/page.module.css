@@ -53,7 +53,7 @@
     height: 150px;
     object-fit: cover;
     border-radius: 12px;
-    border: 1px solid #9f9f9f;
+    border: 1px solid #000000;
 }
 @media (max-width: 500px) {
     .postThumbnail {
