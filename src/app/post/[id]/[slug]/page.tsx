@@ -30,6 +30,19 @@ export default function PostDetail() {
     const [isLoading, setIsLoading] = useState<boolean>(true);
 
     useEffect(() => {
+        // a tag 클릭하면 새 탭에서 열리도록 설정
+        const handleLinkClick = (event: MouseEvent) => {
+            const target = event.target as HTMLAnchorElement;
+            if (target.tagName === 'A') {
+                target.setAttribute('target', '_blank');
+                target.setAttribute('rel', 'noopener noreferrer');
+            }
+        };
+
+        document.addEventListener('click', handleLinkClick);
+    }, []);
+
+    useEffect(() => {
         const fetchPost = async () => {
             if (id) {
                 try {
