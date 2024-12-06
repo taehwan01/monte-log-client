@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
-import styles from '../posts.module.css';
+import styles from './posts.module.css';
 import Post from '../post/post.interface';
 import Image from 'next/image';
 import leftArrow from '../public/arrow-left.svg';
