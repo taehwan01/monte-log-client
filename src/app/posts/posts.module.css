@@ -1,0 +1,136 @@
+.page {
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#pageTitle {
+    font-weight: 300;
+}
+
+#postList {
+    width: 100%;
+    margin: 50px 0;
+}
+
+@media (max-width: 1024px) {
+    #postList {
+        margin: 40px 0 10px;
+    }
+}
+
+@media (max-width: 500px) {
+    #postList {
+        width: 100%;
+        margin: 25px 0 0;
+    }
+}
+
+.postItemContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 30px;
+    cursor: pointer;
+}
+
+.imageContainer {
+    width: 150px;
+    height: 150px;
+    margin-right: 32px;
+    border-radius: 13px;
+}
+@media (max-width: 500px) {
+    .imageContainer {
+        width: 100px;
+        height: 100px;
+        margin-right: 20px;
+    }
+}
+
+.postThumbnail {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #000000;
+}
+@media (max-width: 500px) {
+    .postThumbnail {
+        width: 100px;
+        height: 100px;
+    }
+}
+
+.postItem {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow: hidden;
+}
+.postItem span,
+.postItemTitle {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.postItemTitle {
+    font-size: 18px;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+}
+.postItemContent {
+    font-size: 15px;
+    -webkit-line-clamp: 4;
+    line-clamp: 4;
+    line-height: 1.5;
+}
+@media (max-width: 500px) {
+    .postItemContent {
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+    }
+}
+
+.postItemMeta {
+    font-size: 12.8px;
+    display: flex;
+    align-items: center;
+}
+.postItemMeta span:nth-child(2),
+.postItemMeta span:nth-child(4) {
+    margin: 0 10px;
+}
+
+.postItemLineBreak {
+    height: 5px;
+}
+@media (max-width: 500px) {
+    .postItemLineBreak {
+        height: 0;
+    }
+}
+
+.pageButtonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageContainer {
+    margin: 0 15px;
+}
+.pageButtons {
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+}
+.pageButtons:disabled {
+    cursor: default;
+}
