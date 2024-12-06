@@ -101,3 +101,10 @@
 .postMarkdown td {
     border: 1px solid #9f9f9f !important;
 }
+
+.postMarkdown p > img {
+    border: 1px solid #9f9f9f !important;
+    border-radius: 6px !important;
+    margin: 0 auto !important;
+    display: block !important;
+}

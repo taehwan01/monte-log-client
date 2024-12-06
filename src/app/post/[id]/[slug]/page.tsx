@@ -158,7 +158,7 @@ export default function PostDetail() {
             <HorizontalRule />
             <div style={{ height: '40px' }} />
 
-            <div data-color-mode='light'>
+            <div data-color-mode='light' id={styles.postDetailMainContentContainer}>
                 <Markdown
                     source={post.content}
                     className={styles.postMarkdown}
