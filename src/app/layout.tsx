@@ -29,7 +29,7 @@ const gmarketSans = localFont({
 
 // metadata API를 사용하여 메타 정보 설정
 export const metadata: Metadata = {
-    title: 'm o n t e .l o g',
+    title: 'monte-log',
     description: 'monte의 개발 블로그입니다.',
     icons: {
         icon: '/favicon.ico', // 파비콘 설정

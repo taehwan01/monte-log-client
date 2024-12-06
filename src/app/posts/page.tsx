@@ -18,10 +18,12 @@ export default function Home() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const categoryId = searchParams.get('category');
+
     const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수
+
     const limit = 7; // 한 페이지당 보여줄 게시물 수
 
     useEffect(() => {
@@ -111,10 +113,7 @@ export default function Home() {
                             onClick={() => handlePostClick(post)}
                             className={styles.postItemContainer}
                         >
-                            <div
-                                className={styles.imageContainer}
-                                style={{ backgroundColor: post.post_id === 1 ? '#b0c4cf' : '' }}
-                            >
+                            <div className={styles.imageContainer}>
                                 <Image
                                     src={post.thumbnail}
                                     alt='썸네일 이미지'

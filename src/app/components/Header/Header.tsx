@@ -18,13 +18,21 @@ export default function Header() {
                 </div>
                 <Image
                     id={styles.headerLogoGif}
-                    src='https://media.giphy.com/media/l3q2KmU5GRIFhROLe/giphy.gif?cid=ecf05e47md6v6mi4842p6si3xhytz99rnhdcq9shjg55514p&ep=v1_gifs_related&rid=giphy.gif&ct=g'
+                    src='https://media.giphy.com/media/icIr8rk03xQI6NS67S/giphy.gif?cid=ecf05e47bwu0t64ojczk567l2bq1k2v0upz9h2i06z6rosoi&ep=v1_gifs_related&rid=giphy.gif&ct=g'
                     alt='logo'
                     width={50}
                     height={50}
                     unoptimized
                 />
                 {/* <Image
+                    id={styles.headerLogoGif}
+                    src='https://media.giphy.com/media/l3q2KmU5GRIFhROLe/giphy.gif?cid=ecf05e47md6v6mi4842p6si3xhytz99rnhdcq9shjg55514p&ep=v1_gifs_related&rid=giphy.gif&ct=g'
+                    alt='logo'
+                    width={50}
+                    height={50}
+                    unoptimized
+                /> 
+                <Image
                     id={styles.headerLogoGif}
                     src='https://media.giphy.com/media/eycB31HbJ0C0DfdlAB/giphy.gif?cid=ecf05e47cdxhty0htp5yhnisa36lpvc49usqie1bzp7cbqec&ep=v1_gifs_search&rid=giphy.gif&ct=g'
                     alt='logo'
