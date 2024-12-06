@@ -165,7 +165,7 @@ export default function Home() {
             </div>
 
             <div className={styles.pageButtonsContainer}>
-                <button onClick={handlePreviousPage} className={styles.pageButtons} disabled={currentPage === 1}>
+                <button onClick={handlePreviousPage} className={styles.pageButtons} disabled={currentPage <= 1}>
                     {currentPage === 1 ? (
                         <Image src={leftArrowDisabled} alt='이전' width={20} height={20} />
                     ) : (
@@ -175,8 +175,8 @@ export default function Home() {
                 <span className={styles.pageContainer}>
                     {currentPage}&nbsp;&nbsp;&nbsp;/&nbsp;&nbsp;&nbsp;{totalPages}
                 </span>
-                <button onClick={handleNextPage} className={styles.pageButtons} disabled={currentPage === totalPages}>
-                    {currentPage === totalPages ? (
+                <button onClick={handleNextPage} className={styles.pageButtons} disabled={currentPage >= totalPages}>
+                    {currentPage >= totalPages ? (
                         <Image src={rightArrowDisabled} alt='다음' width={20} height={20} />
                     ) : (
                         <Image src={rightArrow} alt='다음' width={20} height={20} />
