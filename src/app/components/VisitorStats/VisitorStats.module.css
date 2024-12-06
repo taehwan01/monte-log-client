@@ -1,0 +1,10 @@
+#visitorStats {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    width: 180px;
+    margin: 11px 0 16px;
+    color: #9f9f9f;
+}

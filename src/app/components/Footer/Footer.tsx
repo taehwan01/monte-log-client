@@ -7,6 +7,7 @@ import HorizontalRule from '../HorizontalRule/HorizontalRule';
 import pencil from '../../public/pencil.svg';
 import logout from '../../public/logout.svg';
 import { useAuth } from '@/app/context/AuthContext';
+import VisitorStats from '../VisitorStats/VisitorStats';
 
 export default function Footer() {
     const { isLoggedIn } = useAuth();
@@ -55,7 +56,7 @@ export default function Footer() {
                         </button>
                     )}
                 </div>
-                <br />
+                <VisitorStats />
                 <div id={styles.footerCopyright}>
                     <span>&copy; 2024. monte all rights reserved.</span>
                 </div>
