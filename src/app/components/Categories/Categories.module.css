@@ -7,6 +7,11 @@
     align-items: center;
     flex-wrap: wrap;
 }
+@media (max-width: 500px) {
+    #categoryList {
+        width: 100%;
+    }
+}
 
 .categoryButtons {
     font-size: 15px;
