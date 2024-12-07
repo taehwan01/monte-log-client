@@ -1,0 +1,17 @@
+.pageButtonsContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pageContainer {
+    margin: 0 15px;
+}
+.pageButtons {
+    padding: 20px;
+    border: none;
+    border-radius: 50%;
+    background-color: transparent;
+}
+.pageButtons:disabled {
+    cursor: default;
+}
