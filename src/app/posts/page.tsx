@@ -159,7 +159,7 @@ export default function Home() {
                         </div>
                     ))
                 ) : (
-                    <p>글이 없습니다.</p>
+                    <p>현재 비공개 처리되어 있습니다.</p>
                 )}
             </div>
 
