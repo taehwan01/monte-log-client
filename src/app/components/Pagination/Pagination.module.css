@@ -13,7 +13,8 @@
     background-color: transparent;
     display: grid;
     place-items: center;
+    transition-duration: 0.2s;
 }
-.pageButtons:disabled {
-    cursor: default;
+.pageButtons:hover {
+    transform: scale(1.3);
 }
