@@ -15,7 +15,7 @@ export default function Footer() {
     const handleClickPencil = () => {
         if (isLoggedIn) {
             const currentPath = window.location.pathname;
-            if (currentPath === '/') {
+            if (currentPath === '/posts') {
                 window.location.href = '/post/new-post';
             } else if (currentPath.includes('/post/')) {
                 const postId = currentPath.split('/')[2];
