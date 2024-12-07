@@ -19,9 +19,16 @@
     color: black;
     background-color: transparent;
     margin: 0 10px 15px 10px;
+    transition-duration: 0.2s;
+}
+.categoryButtons:hover {
+    transform: translateY(-1px) scale(1.1);
 }
 
 .selectedCategory {
-    font-size: 18px;
-    font-weight: 400;
+    font-size: 16px;
+    font-weight: 500;
+}
+.selectedCategory:hover {
+    transform: none;
 }

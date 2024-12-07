@@ -61,7 +61,7 @@ export default function Home() {
     return (
         <div className={styles.page}>
             <h2 id={styles.pageTitle}>목록</h2>
-            <Categories />
+            <Categories selectedCategory={category} />
             <div id={styles.postList}>
                 {posts.length > 0 ? (
                     posts.map((post) => <PostItem key={post.post_id} post={post} />)
