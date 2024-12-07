@@ -35,10 +35,6 @@
     transition: transform 0.2s;
 }
 
-#likeButton:hover {
-    transform: scale(1.1);
-}
-
 #comments {
     margin-top: 40px;
     padding: 10px 20%;
