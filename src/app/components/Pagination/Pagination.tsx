@@ -14,9 +14,9 @@ export default function Pagination({ currentPage, totalPages, currentCategory }:
     return (
         <div className={styles.pageButtonsContainer}>
             <Link
-                href={currentPage > 1 ? getPageLink(currentPage - 1) : '#'}
+                href={currentPage > 1 ? getPageLink(currentPage - 1) : ''}
                 className={styles.pageButtons}
-                style={{ pointerEvents: currentPage <= 1 ? 'none' : 'auto', opacity: currentPage <= 1 ? 0.5 : 1 }}
+                style={{ pointerEvents: currentPage <= 1 ? 'none' : 'auto' }}
             >
                 <Image src={currentPage === 1 ? arrowLeftDisabled : arrowLeft} alt='이전' width={20} height={20} />
             </Link>
@@ -26,11 +26,10 @@ export default function Pagination({ currentPage, totalPages, currentCategory }:
             </span>
 
             <Link
-                href={currentPage < totalPages ? getPageLink(currentPage + 1) : '#'}
+                href={currentPage < totalPages ? getPageLink(currentPage + 1) : ''}
                 className={styles.pageButtons}
                 style={{
                     pointerEvents: currentPage >= totalPages ? 'none' : 'auto',
-                    opacity: currentPage >= totalPages ? 0.5 : 1,
                 }}
             >
                 <Image

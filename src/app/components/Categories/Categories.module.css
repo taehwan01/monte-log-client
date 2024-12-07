@@ -1,6 +1,5 @@
 #categoryList {
     width: 60%;
-    /* background-color: pink; */
     margin-top: 50px;
     display: flex;
     justify-content: center;
@@ -15,14 +14,14 @@
 
 .categoryButtons {
     font-size: 15px;
-    font-weight: 400;
+    font-weight: 300;
     border: none;
-    /* border: 1px solid black; */
     color: black;
     background-color: transparent;
     margin: 0 10px 15px 10px;
-    transition: transform 0.2s;
 }
-.categoryButtons:hover {
-    transform: scale(1.1) !important;
+
+.selectedCategory {
+    font-size: 18px;
+    font-weight: 400;
 }

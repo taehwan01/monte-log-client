@@ -11,6 +11,8 @@
     border: none;
     border-radius: 50%;
     background-color: transparent;
+    display: grid;
+    place-items: center;
 }
 .pageButtons:disabled {
     cursor: default;
