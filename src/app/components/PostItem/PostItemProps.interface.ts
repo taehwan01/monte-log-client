@@ -1,4 +1,4 @@
-interface PostItemProps {
+export default interface PostItemProps {
     post: {
         post_id: number;
         title: string;

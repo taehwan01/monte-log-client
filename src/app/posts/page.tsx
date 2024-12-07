@@ -18,7 +18,6 @@ export default function Home() {
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [totalPages, setTotalPages] = useState(1);
-    const limit = 2;
 
     useEffect(() => {
         const getPosts = async () => {
@@ -29,7 +28,10 @@ export default function Home() {
                 apiUrl += `/category/${category}`;
             }
             if (page) {
-                apiUrl += `?page=${page}&limit=${limit}`;
+                apiUrl += `?page=${page}`;
+                // if (limit) {
+                //     apiUrl += `&limit=${limit}`;
+                // }
             }
 
             console.log({ page, category, apiUrl });
@@ -67,7 +69,7 @@ export default function Home() {
                     <p>현재 비공개 처리되어 있습니다.</p>
                 )}
             </div>
-            <Pagination currentPage={page} totalPages={totalPages} />
+            <Pagination currentPage={page} totalPages={totalPages} currentCategory={category} />
         </div>
     );
 }

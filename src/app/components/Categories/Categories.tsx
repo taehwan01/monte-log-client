@@ -1,6 +1,5 @@
 'use client';
 
-import { useParams } from 'next/navigation';
 import styles from './Categories.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';

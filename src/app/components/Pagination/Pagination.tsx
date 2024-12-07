@@ -5,9 +5,11 @@ import arrowLeft from '../../public/arrow-left.svg';
 import arrowLeftDisabled from '../../public/arrow-left-disabled.svg';
 import arrowRight from '../../public/arrow-right.svg';
 import arrowRightDisabled from '../../public/arrow-right-disabled.svg';
+import PaginationProps from './PaginationProps.interface';
 
-export default function Pagination({ currentPage, totalPages }: Readonly<PaginationProps>) {
-    const getPageLink = (page: number) => `/posts?page=${page}`;
+export default function Pagination({ currentPage, totalPages, currentCategory }: Readonly<PaginationProps>) {
+    const getPageLink = (page: number) =>
+        currentCategory !== null ? `/posts?category=${currentCategory}&page=${page}` : `/posts?page=${page}`;
 
     return (
         <div className={styles.pageButtonsContainer}>

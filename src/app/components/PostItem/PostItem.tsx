@@ -2,6 +2,7 @@ import styles from './PostItem.module.css';
 import Image from 'next/image';
 import Link from 'next/link';
 import grayHeart from '../../public/gray-heart.svg';
+import PostItemProps from './PostItemProps.interface';
 
 export default function PostItem({ post }: Readonly<PostItemProps>) {
     const createSlug = (title: string): string => {
