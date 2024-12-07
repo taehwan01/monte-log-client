@@ -1,5 +1,6 @@
 import styles from './PostItem.module.css';
 import Image from 'next/image';
+import Link from 'next/link';
 import grayHeart from '../../public/gray-heart.svg';
 
 export default function PostItem({ post }: Readonly<PostItemProps>) {
@@ -9,11 +10,6 @@ export default function PostItem({ post }: Readonly<PostItemProps>) {
             .replace(/[^\p{L}\p{N}\s-]/gu, '') // \p{L}은 모든 문자, \p{N}은 숫자, 유니코드 플래그 추가
             .trim()
             .replace(/\s+/g, '-'); // 공백을 하이픈으로 변환
-    };
-
-    const handlePostClick = () => {
-        const slug = createSlug(post.title);
-        window.location.href = `/post/${post.post_id}/${slug}`;
     };
 
     const formatDate = (dateString: string) => {
@@ -26,7 +22,7 @@ export default function PostItem({ post }: Readonly<PostItemProps>) {
     };
 
     return (
-        <div onClick={handlePostClick} className={styles.postItemContainer}>
+        <Link href={`/post/${post.post_id}/${createSlug(post.title)}`} className={styles.postItemContainer}>
             <div className={styles.imageContainer}>
                 <Image
                     src={post.thumbnail}
@@ -37,6 +33,11 @@ export default function PostItem({ post }: Readonly<PostItemProps>) {
                 />
             </div>
             <table className={styles.postItem}>
+                <thead style={{ display: 'none' }}>
+                    <tr>
+                        <th></th>
+                    </tr>
+                </thead>
                 <tbody>
                     <tr>
                         <td>
@@ -64,6 +65,6 @@ export default function PostItem({ post }: Readonly<PostItemProps>) {
                     </tr>
                 </tbody>
             </table>
-        </div>
+        </Link>
     );
 }

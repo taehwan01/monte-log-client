@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import styles from './posts.module.css';
 import Loading from '../components/Loading/Loading';
 import Categories from '../components/Categories/Categories';
@@ -11,27 +11,28 @@ import PostItem from '../components/PostItem/PostItem';
 import Post from '../post/post.interface';
 
 export default function Home() {
-    const router = useRouter();
     const searchParams = useSearchParams();
-    const categoryId = searchParams.get('category');
+    const page = Number(searchParams.get('page')) || 1;
+    const category = searchParams.get('category') ? Number(searchParams.get('category')) : null;
 
-    const [currentPage, setCurrentPage] = useState(1);
     const [isLoading, setIsLoading] = useState(true);
     const [posts, setPosts] = useState<Post[]>([]);
     const [totalPages, setTotalPages] = useState(1);
-    const limit = 7;
-
-    useEffect(() => {
-        const page = Number(searchParams.get('page')) || 1;
-        setCurrentPage(page);
-    }, [searchParams]);
+    const limit = 2;
 
     useEffect(() => {
         const getPosts = async () => {
             setIsLoading(true);
-            const apiUrl = categoryId
-                ? `${process.env.NEXT_PUBLIC_API_URL}/posts/category/${categoryId}?page=${currentPage}&limit=${limit}`
-                : `${process.env.NEXT_PUBLIC_API_URL}/posts?page=${currentPage}&limit=${limit}`;
+
+            let apiUrl = `${process.env.NEXT_PUBLIC_API_URL}/posts`;
+            if (category) {
+                apiUrl += `/category/${category}`;
+            }
+            if (page) {
+                apiUrl += `?page=${page}&limit=${limit}`;
+            }
+
+            console.log({ page, category, apiUrl });
 
             try {
                 const { data } = await axios.get(apiUrl);
@@ -40,16 +41,12 @@ export default function Home() {
             } catch (error) {
                 console.error('Error fetching posts:', error);
             }
+
             setIsLoading(false);
         };
 
         getPosts();
-    }, [currentPage, categoryId]);
-
-    const handlePageChange = (newPage: number) => {
-        router.push(`/posts?page=${newPage}`);
-        setCurrentPage(newPage);
-    };
+    }, [page, category]);
 
     if (isLoading) {
         return (
@@ -70,7 +67,7 @@ export default function Home() {
                     <p>현재 비공개 처리되어 있습니다.</p>
                 )}
             </div>
-            <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={handlePageChange} />
+            <Pagination currentPage={page} totalPages={totalPages} />
         </div>
     );
 }

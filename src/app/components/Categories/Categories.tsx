@@ -4,12 +4,10 @@ import { useParams } from 'next/navigation';
 import styles from './Categories.module.css';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import Category from './category.interface';
 
 export default function Categories() {
-    const router = useRouter();
-    const { id } = useParams();
     const [categories, setCategories] = useState<Category[]>([]);
 
     useEffect(() => {
@@ -25,30 +23,16 @@ export default function Categories() {
         fetchCategories();
     }, []);
 
-    useEffect(() => {
-        if (categories.length > 0) {
-            const categoryId = Array.isArray(id) ? parseInt(id[0], 10) : parseInt(id ?? '', 10);
-
-            if (isNaN(categoryId) || !categories.some((category) => category.category_id === categoryId)) {
-                router.push('/posts');
-            }
-        }
-    }, [id, categories, router]);
-
-    const handleCategoryClick = (categoryId: number) => {
-        router.push(`/posts?category=${categoryId}`);
-    };
-
     return (
         <div id={styles.categoryList}>
             {categories.map((category) => (
-                <button
+                <Link
                     key={category.category_id}
+                    href={`/posts?category=${category.category_id}`}
                     className={styles.categoryButtons}
-                    onClick={() => handleCategoryClick(category.category_id)}
                 >
                     {category.name}
-                </button>
+                </Link>
             ))}
         </div>
     );
