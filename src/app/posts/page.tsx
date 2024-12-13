@@ -34,8 +34,6 @@ export default function Home() {
                 // }
             }
 
-            console.log({ page, category, apiUrl });
-
             try {
                 const { data } = await axios.get(apiUrl);
                 setPosts(data.posts);
