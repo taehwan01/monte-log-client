@@ -42,7 +42,9 @@ export default function PostItem({ post }: Readonly<PostItemProps>) {
                 <tbody>
                     <tr>
                         <td>
-                            <span className={styles.postItemTitle}>{post.title}</span>
+                            <span className={styles.postItemTitle}>
+                                [{post.category.name}] {post.title}
+                            </span>
                         </td>
                     </tr>
                     <tr className={styles.postItemLineBreak}></tr>
